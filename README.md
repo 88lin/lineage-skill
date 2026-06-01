@@ -37,10 +37,11 @@ Course video in, grounded expert skill out.
 | 多模式 Skill 生成 | `scripts/build_course_skill.py` | 已有 |
 | 一键流水线 | `scripts/run_course_pipeline.py` | 已有 |
 | 本地关键词检索 | 生成到 Skill 的 `scripts/search_course_notes.py` | 已有 |
+| PDF / OCR / MinerU 配置 | `.env.example` | 已预留 |
 
 这些能力沉淀自真实课程蒸馏实践，但仓库本身只保留通用方法和通用流水线，不绑定任何既有课程、老师、领域或本地目录：大视频分片、720p/480p 压缩、音频转录、OpenAI-compatible 视觉分析、截图去重、LLM 课程蒸馏和本地抽取式 fallback。
 
-文字资料、扫描 PDF、MinerU OCR 二次蒸馏已有参考实现来源，但还没有完全通用化进本仓库主命令；当前主线先聚焦视频课程到 Skill。
+PDF、扫描件和 MinerU OCR 已在配置层预留，不写死任何真实 token、私有路径或课程内容。当前可把外部 OCR/MinerU 产物作为课程材料输入到 `CoursePackage` 和 Skill 生成层；下一步是把 MinerU 解析命令正式接入主流水线。
 
 ## C5 课程炼化框架
 
@@ -355,6 +356,6 @@ pip install -r requirements.txt
 当前项目已经具备视频课程主链路，但仍有几个明确边界：
 
 - 依赖外部模型 API 和 `ffmpeg`
-- 扫描 PDF / MinerU / 大规模文字资料蒸馏尚未完全通用化到主命令
+- PDF / OCR / MinerU 已预留配置；MinerU 解析命令尚待接入主流水线
 - `evidence_map.json` 当前以文件级证据为主，后续要升级到片段级、时间点级和主题级
 - 语义检索、向量索引、多课程知识库仍在路线图中

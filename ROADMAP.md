@@ -17,11 +17,13 @@
 - `lesson_index.json` 生成
 - `evidence_map.json` 文件级索引
 - 轻量关键词搜索脚本
+- `.env.example` 已预留 PDF / OCR / MinerU 配置
+- 外部 OCR/MinerU 产物可进入 CoursePackage 与 Skill 生成层
 
 还没有完全通用化的是：
 
-- OCR 与扫描 PDF 解析
-- MinerU OCR 二次蒸馏
+- MinerU 解析命令接入主流水线
+- OCR 结果到 CoursePackage 的标准映射
 - 语义检索
 - 多课程索引
 
