@@ -1,0 +1,42 @@
+生成后的课程 Skill 建议结构
+===========================
+
+<generated-skill>/
+├── SKILL.md
+├── lineage_manifest.json
+├── references/
+│   ├── course_package.json
+│   ├── course_digest.md
+│   ├── full_transcript.md
+│   ├── lesson_index.json
+│   ├── concept_glossary.md
+│   ├── evidence_map.json
+│   ├── quote_index.md
+│   └── study_paths.md
+└── scripts/
+    └── search_course_notes.py
+
+SKILL.md 应包含：
+
+- skill 触发条件
+- 课程范围
+- 回答原则
+- 溯源规则
+- 安全边界
+- references 使用说明
+
+references 应包含：
+
+- 课程总览
+- 逐课索引
+- 概念索引
+- 证据索引
+- 学习路径
+
+不同 mode 会增加额外 references：
+
+- study-coach: review_prompts.md, learning_plans.md, difficulty_map.json, learning_checks.json
+- practitioner: playbooks.md, checklists.md, templates.md, case_index.json
+- citation-archive: source_manifest.json, confidence_rules.md
+- knowledge-base: course_catalog.json, cross_course_topics.json, concept_aliases.json, teacher_views.md
+- domain-expert: domain_map.md, method_library.md, case_library.json, source_courses.json, boundary_rules.md

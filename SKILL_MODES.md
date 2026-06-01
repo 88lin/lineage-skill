@@ -1,0 +1,186 @@
+# Skill Modes
+
+`lineage-skill` separates course distillation from Skill packaging.
+
+The distillation pipeline should first produce a generic course package. A Skill mode then decides how that package is used.
+
+```text
+CoursePackage
+  ├─ course-expert
+  ├─ study-coach
+  ├─ practitioner
+  ├─ citation-archive
+  ├─ knowledge-base
+  └─ domain-expert
+```
+
+## Generic Course Package
+
+Every course should be distilled into common objects, independent of subject:
+
+- `manifest`: course name, source files, generation time, pipeline settings
+- `lessons`: lesson order, titles, summaries, duration, source files
+- `concepts`: terms, definitions, aliases, source lessons
+- `topics`: cross-lesson themes and topic relationships
+- `cases`: examples, demos, stories, applications
+- `methods`: frameworks, steps, procedures, decision rules
+- `learning_checks`: optional assignments, drills, reflection prompts, review questions, or assessment checks when suitable
+- `quotes`: memorable statements and source references
+- `evidence`: transcripts, screenshots, analysis files, timestamps, confidence
+- `study_paths`: beginner, review, topical, and time-boxed routes
+- `boundaries`: unsupported areas, professional boundaries, confidence rules
+
+This package is the stable middle layer. Modes are projections of this package, not separate distillation pipelines.
+
+`learning_checks` is intentionally optional. Some courses are conceptual, inspirational, archival, or reference-oriented; forcing quizzes into those courses would distort the source material. Study Coach mode may create review prompts or checks only when they fit the course and the user's goal.
+
+Build it with:
+
+```bash
+python scripts/build_course_package.py \
+  --course-name example-course \
+  --source-dir ./example-course
+```
+
+The output is:
+
+```text
+example-course/course_package.json
+```
+
+## Mode 1: Course Expert
+
+Default mode.
+
+Use when the Skill should behave like an expert on one packaged course.
+
+Typical tasks:
+
+- Explain course concepts
+- Summarize a lesson
+- Compare topics
+- Find quotes or source lessons
+- Generate course-grounded notes
+- Build review paths
+
+Command:
+
+```bash
+python scripts/build_course_skill.py \
+  --source-dir ./example-course \
+  --course-name example-course \
+  --skill-name example-course-expert \
+  --mode course-expert \
+  --output-dir ./dist
+```
+
+## Mode 2: Study Coach
+
+Use when the Skill should help a learner study the course.
+
+Typical tasks:
+
+- Build 1-day, 7-day, or 30-day plans
+- Generate recall prompts or reflection prompts
+- Create recall prompts
+- Review weak areas
+- Convert lessons into study tasks
+
+Extra references:
+
+- `review_prompts.md`
+- `learning_plans.md`
+- `difficulty_map.json`
+- `learning_checks.json`
+
+## Mode 3: Practitioner
+
+Use when the Skill should turn course knowledge into action.
+
+Typical tasks:
+
+- Build checklists
+- Generate playbooks
+- Create templates
+- Apply course methods to a user scenario
+- Retrieve similar course cases
+
+Extra references:
+
+- `playbooks.md`
+- `checklists.md`
+- `templates.md`
+- `case_index.json`
+
+## Mode 4: Citation Archive
+
+Use when source fidelity matters more than broad coaching.
+
+Typical tasks:
+
+- Find where a claim appears
+- Retrieve quotes
+- Separate direct course content from synthesis
+- Mark unsupported claims
+- Produce auditable notes
+
+Extra references:
+
+- `source_manifest.json`
+- `confidence_rules.md`
+
+## Mode 5: Knowledge Base
+
+Use when one Skill should organize multiple courses or a growing course library.
+
+Typical tasks:
+
+- Catalog courses
+- Normalize concept aliases
+- Build cross-course topic maps
+- Compare different source perspectives
+- Generate topic packs
+
+Extra references:
+
+- `course_catalog.json`
+- `cross_course_topics.json`
+- `concept_aliases.json`
+- `teacher_views.md`
+
+## Mode 6: Domain Expert
+
+Use when several courses should become a broader domain expert.
+
+Typical tasks:
+
+- Build a domain map
+- Maintain a method library
+- Maintain a case library
+- Answer domain questions with source tracing
+- Define domain boundaries
+
+Extra references:
+
+- `domain_map.md`
+- `method_library.md`
+- `case_library.json`
+- `source_courses.json`
+- `boundary_rules.md`
+
+## Combined Modes
+
+Modes can be combined:
+
+```bash
+python scripts/build_course_skill.py \
+  --source-dir ./example-course \
+  --course-name example-course \
+  --skill-name example-course-coach \
+  --mode course-expert,study-coach \
+  --output-dir ./dist
+```
+
+Combined modes share the same base references and add each mode's extra references.
+
+Use combinations sparingly. A focused Skill is usually easier for an agent to trigger and follow.
