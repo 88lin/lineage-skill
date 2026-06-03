@@ -1,58 +1,55 @@
 ---
 name: lineage-skill
-description: Use this skill when the user wants to distill a course, training program, lecture series, video/audio course, PDF/slides course material, or existing course notes into a CoursePackage and generate one or more AI Agent Skills from it.
+description: Distills course materials into source-grounded AI agent skills. Use when the user wants to convert videos, audio, PDFs, slides, transcripts, OCR output, notes, or existing course distillation files into a CoursePackage and generated course-expert, study-coach, practitioner, citation-archive, knowledge-base, or domain-expert Skill.
 ---
 
 # Lineage Skill
 
-You help users turn course materials into reusable, source-grounded AI Skills.
+Turn course materials into reusable, source-grounded AI Skills.
 
-## When To Use
+Core method: **Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate**.
+Use this as an evidence-first workflow: preserve source material before summarizing, cite sources before synthesizing, and mark unsupported gaps.
+
+## Read When Needed
+
+- Method and evidence rules: [references/methodology.md](references/methodology.md)
+- CoursePackage schema: [references/course-package.md](references/course-package.md)
+- Mode selection: [references/skill-modes.md](references/skill-modes.md)
+- Environment variables: [references/configuration.md](references/configuration.md)
+- PDF/OCR workflow: [references/mineru-ocr.md](references/mineru-ocr.md)
+
+## Trigger Conditions
 
 Use this skill when the user asks to:
 
-- distill a course, training program, lecture series, workshop, or curriculum
-- convert videos, audio, slides, PDFs, notes, or screenshots into course knowledge
-- build a course expert, study coach, practitioner, citation archive, knowledge base, or domain expert skill
-- create or update a `CoursePackage`
-- package distilled course materials into a new Skill
+- Distill a course, lecture series, workshop, training program, curriculum, or long-form class.
+- Convert videos, audio, PDFs, slides, screenshots, notes, transcripts, OCR output, or course summaries into structured course knowledge.
+- Generate or update a course-backed Skill.
+- Build a course expert, study coach, practitioner playbook, citation archive, knowledge base, or domain expert Skill.
+- Package existing `transcripts/`, `analysis/`, `documents/`, `lesson_summaries.json`, `course_distillation_*.md/json`, or `course_package.json`.
 
-## Core Workflow
+## Decision Flow
 
-1. Clarify source material type:
-   - videos/audio
-   - PDFs/slides/docs
-   - existing transcripts/notes
-   - existing course distillation outputs
-2. Preserve evidence before summarizing.
-3. Build or update course artifacts:
-   - `transcripts/`
-   - `analysis/`
-   - `documents/`
-   - `lesson_summaries.json`
-   - `course_distillation_<date>.md/json`
-   - `full_transcript.md`
-4. Build `course_package.json`.
-5. Generate a mode-specific Skill.
+1. Identify source state:
+   - **Videos/audio only**: run the full pipeline.
+   - **Videos plus PDFs**: run the full pipeline with document OCR if configured.
+   - **Existing transcripts/OCR/notes**: skip capture; build package and Skill.
+   - **Existing CoursePackage**: skip distillation; build or update Skill.
+2. Choose mode:
+   - Default: `course-expert`.
+   - Add `practitioner` when the user wants checklists, playbooks, templates, or application workflows.
+   - Add `study-coach` when the user wants review plans or learning paths.
+   - Add `citation-archive` when strict quote/source lookup matters.
+   - Read [references/skill-modes.md](references/skill-modes.md) for multi-course or domain modes.
+3. Preserve evidence before summarizing.
+4. Generate outputs.
+5. Verify expected files exist and report paths.
 
-## Skill Modes
+## Workflows
 
-Default to `course-expert` unless the user asks for another mode.
+### Full Course Pipeline
 
-- `course-expert`: course Q&A, concept explanation, lesson lookup, source-backed notes
-- `study-coach`: learning plans, review prompts, reflection prompts, weak-point review
-- `practitioner`: playbooks, checklists, templates, workflows
-- `citation-archive`: strict source lookup, quotes, auditable references
-- `knowledge-base`: multi-course catalog, topic map, concept aliases
-- `domain-expert`: domain map, method library, case library, boundary rules
-
-Modes can be combined with commas, for example `course-expert,practitioner`.
-
-## Commands
-
-Use these scripts from the repository root.
-
-### Full video pipeline
+Use when raw course videos need transcription, visual analysis, distillation, packaging, and Skill generation.
 
 ```bash
 python scripts/run_course_pipeline.py \
@@ -63,9 +60,7 @@ python scripts/run_course_pipeline.py \
   --output-dir ./dist
 ```
 
-### Include PDFs with MinerU
-
-Only run this when the user has configured `MINERU_API_TOKEN` and asks to include PDFs.
+With PDFs/OCR:
 
 ```bash
 python scripts/run_course_pipeline.py \
@@ -73,11 +68,15 @@ python scripts/run_course_pipeline.py \
   --documents-input <pdf-or-pdf-dir> \
   --course-name <course-name> \
   --skill-name <skill-name> \
-  --mode course-expert \
+  --mode course-expert,practitioner \
   --output-dir ./dist
 ```
 
-### Existing materials to Skill
+Before using PDFs, check `MINERU_API_TOKEN`. If it is missing, read [references/mineru-ocr.md](references/mineru-ocr.md) and explain the fallback.
+
+### Existing Materials
+
+Use when the user already has transcripts, OCR, notes, summaries, or distillation outputs.
 
 ```bash
 python scripts/build_course_package.py \
@@ -92,19 +91,40 @@ python scripts/build_course_skill.py \
   --output-dir ./dist
 ```
 
-## Security Rules
+### Existing CoursePackage
 
-- Never write real API keys into repository files.
-- Never commit `.env`.
-- Never hardcode private local paths, course names, or historical distilled content into reusable scripts.
-- Keep generated transcripts, screenshots, OCR outputs, and distillation artifacts out of git unless the user explicitly wants to publish them.
-- If a course contains copyrighted or private material, package only indexes and local references unless the user explicitly confirms what can be published.
+If `<course-dir>/course_package.json` already exists, run only `build_course_skill.py` unless the user asks to rebuild the package.
+
+## Validation Loop
+
+After generation, verify:
+
+```text
+<generated-skill>/
+├── SKILL.md
+├── agents/
+├── references/
+├── scripts/search_course_notes.py
+└── lineage_manifest.json
+```
+
+Check:
+
+- `references/course_package.json` exists.
+- `references/evidence_map.json` exists.
+- `references/lesson_index.json` exists.
+- Mode-specific reference files exist for requested modes.
+- `scripts/search_course_notes.py` is executable.
+
+If validation fails, fix the missing artifact and rerun the smallest necessary command.
 
 ## Response Rules
 
-- Explain what source materials are needed.
-- Prefer the smallest pipeline that fits the user's current materials.
-- State what was generated and where.
-- If external APIs are missing, tell the user which environment variables are required.
-- For high-stakes course domains, preserve boundaries and source references.
-
+- State which source state was detected and which workflow you used.
+- Prefer the smallest pipeline that fits the user's materials.
+- Name the generated Skill path and important reference files.
+- Distinguish direct course content, course-grounded synthesis, and your own inference.
+- If support is missing, say what evidence is missing.
+- Never write real API keys into repository files or commit `.env`.
+- Do not commit private transcripts, screenshots, OCR output, or course distillation artifacts unless the user explicitly wants to publish them.
+- For medical, legal, financial, investment, or other high-stakes courses, keep answers educational and source-bounded.
