@@ -1,0 +1,291 @@
+<div align="center">
+
+# Lineage Skill
+
+**Turn a full course into a long-lived AI mentor for learning and practice.**
+
+Convert videos, handouts, whiteboards, transcripts, screenshots, and notes into
+traceable course knowledge, then let an Agent answer questions, review lessons,
+run drills, locate sources, and generate practical outputs from that course.
+
+For Codex / Claude Code / OpenClaw / Hermes / custom Agents.
+
+[![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-orange.svg)](./LICENSE)
+[![Skill](https://img.shields.io/badge/AI%20Agent-Skill-orange.svg)](./SKILL.md)
+
+[中文](./README.md)
+
+</div>
+
+---
+
+## What Is This?
+
+`lineage-skill` is an Agent Skill for turning a complete set of course materials
+into a dedicated course mentor.
+
+Its core value has two layers:
+
+1. **Course distillation**: organize videos, bootcamps, lectures, PDF handouts,
+   whiteboards, screenshots, transcripts, and learning notes into a structured,
+   source-backed course knowledge system.
+2. **Dedicated mentor**: let an Agent do more than summarize the course. It can
+   answer from the course's original intent, ask follow-up questions, plan review,
+   locate sources, and generate checklists, playbooks, and templates.
+
+In one sentence: turn "I bought, watched, or studied a course" into "I have a
+course mentor I can call on at any time."
+
+## Why It Matters
+
+Most courses lose value quickly after you finish them. Videos are long, handouts
+are scattered, cases are hard to find, and methods are difficult to reuse when
+you need them later.
+
+`lineage-skill` does not compress a course into a one-page summary. It turns the
+course into a reusable learning system:
+
+- **Preserve original intent**: keep sources, lessons, screenshots, handouts, and transcripts before summarizing.
+- **Build knowledge structure**: extract concepts, themes, methods, cases, quotes, steps, and boundaries.
+- **Support continuous questioning**: ask "why", "how do I judge", "how exactly do I do this", and "where is the source".
+- **Serve real work**: turn course methods into checklists, workflows, templates, and practical decision rules.
+- **Create a personal asset**: each course can become a reusable, reviewable, and transferable Agent Skill.
+
+Once it works well, the mentor can also help you do real work:
+
+- **Apply course methods to real tasks**: break down problems, draft plans, and check omissions using the teacher's method.
+- **Turn abstract experience into executable artifacts**: SOPs, briefs, review forms, checklists, scripts, outlines, and decision frameworks.
+- **Act as an expert inside workflows**: writing, consulting, operations, teaching, research, product design, and other knowledge work.
+- **Make the course a productivity tool**: instead of rewatching the course, let the Agent carry the course method into daily work.
+
+## Methodology
+
+Yes. `lineage-skill` is not "throw the materials into a model and summarize".
+It follows a course knowledge asset production flow:
+
+```text
+Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate
+collect   -> source -> distill  -> link    -> skill   -> assess
+```
+
+It preserves evidence first, then summarizes. It separates lessons, handouts,
+whiteboards, cases, and notes before reorganizing them into concepts, methods,
+steps, templates, and mentor capabilities.
+
+![lineage-skill methodology value path](./docs/img/lineage-methodology-value-en.png)
+
+This supports two kinds of value:
+
+- **Learning value**: Q&A, review, source lookup, follow-up questions, gap checks, and learning paths.
+- **Work value**: turn course methods into SOPs, checklists, playbooks, briefs, drafts, review forms, and quality checks.
+
+## Capabilities
+
+This Skill includes the main pipeline needed for course distillation. You do not
+need to design the whole "video course to mentor" workflow yourself. Provide the
+course materials and configure suitable model interfaces.
+
+| Capability | What It Does | Output |
+| --- | --- | --- |
+| Video / audio transcription | Extracts audio from `.mp4`, or transcribes `.mp3`, `.wav`, `.m4a`, and similar files; long audio is split automatically | `transcripts/*.json` |
+| Video visual understanding | Uses a vision model to analyze slides, whiteboards, software screens, charts, demos, and key frames | `analysis/*_analysis.md` |
+| Large video handling | Compresses and chunks large videos to reduce upload and analysis pressure | Chunked analysis results |
+| Useful screenshot extraction | Lets a vision model mark valuable frames, extracts them from source videos, and deduplicates similar screenshots | `analysis/screenshots/` |
+| PDF / document parsing | Integrates MinerU or other OCR/document parsing outputs for scanned PDFs, image PDFs, and handouts | `documents/`, `mineru_supplement.md` |
+| Course distillation | Combines transcripts, visual analysis, screenshot evidence, OCR, and notes into concepts, methods, cases, and citations | `course_distillation_*.md/json` |
+| CoursePackage build | Converts distillation results into a unified structure with evidence map, lesson index, and quality metadata | `course_package.json` |
+| Multi-course merge | Combines multiple course packages into one cross-course Skill input | combined `course_package.json` |
+| Dedicated mentor Skill generation | Generates `mentor` by default; other roles are also supported | Installable/callable course Skill |
+| Resume and progress tracking | Records stage state, existing artifacts, and next steps so runs can resume | `lineage_progress.json` |
+| Multi-course catalog | Scans multiple course workspaces and generated Skills into one catalog | `course_catalog.json` |
+
+## Requirements
+
+You need three kinds of inputs: **course materials**, **local tools**, and
+**model interfaces**.
+
+| Requirement | Notes |
+| --- | --- |
+| Course materials | Videos, audio, PDFs, handouts, screenshots, transcripts, OCR output, and notes are all supported. More complete materials make the mentor closer to the course's original intent. |
+| `ffmpeg` / `ffprobe` | Used to extract audio, read media duration, split long audio, compress/chunk video, and extract screenshots. |
+| Speech-to-text model | Restores what the teacher said. Chinese courses may work well with SenseVoiceSmall / FunASR; English or multilingual courses can use `whisper-1`, `gpt-4o-transcribe`, or `gpt-4o-mini-transcribe`. |
+| Video / vision model | Understands what appears on screen. Use a model that handles long videos, slides, whiteboards, software interfaces, and screenshots well. |
+| Text distillation model | Compresses transcripts, visual analysis, OCR, and notes into a course knowledge structure. Prefer long-context, stable structured output, and strong language understanding. |
+| OCR / document parser | Plain-text PDFs can be extracted directly. Scanned PDFs, image PDFs, formulas, tables, and complex layouts should use MinerU or a comparable parser, with manual checks where needed. |
+
+The current scripts mainly use OpenAI-compatible interfaces for speech, vision,
+and text models. If a model provider does not expose that shape directly, use a
+compatible gateway or adapter layer.
+
+For details, see [docs/configuration.md](./docs/configuration.md) and
+[docs/mineru-ocr.md](./docs/mineru-ocr.md).
+
+For repository structure, see [docs/project-structure.md](./docs/project-structure.md).
+For outputs, resume behavior, progress records, multi-course organization, and
+Skill naming, see [docs/output-and-resume.md](./docs/output-and-resume.md).
+
+## Who Is This For?
+
+- You have tens or hundreds of hours of course material and want to ask it questions later.
+- You want more than a summary: you want a mentor that understands this course.
+- You want to know which lesson a concept, quote, or method came from.
+- You want to turn course methods into checklists, workflows, templates, and decision rules.
+- You want the course mentor to help produce plans, reviews, checklists, and executable documents.
+- You want an Agent to help you review, ask follow-up questions, find gaps, and organize concepts and cases.
+- You already have transcripts, OCR, notes, or distillation results and want to package them into a reusable Skill.
+
+## Usage
+
+### 1. Ask Your Agent to Install This Skill
+
+Send this to your Agent:
+
+```text
+Please install this Skill:
+https://raw.githubusercontent.com/JuneYaooo/lineage-skill/main/docs/install.md
+
+After installation, tell me how I can turn my course materials into a course expert.
+```
+
+### 2. Tell the Agent Where Your Materials Are
+
+Example:
+
+```text
+I have a video/audio course directory and a set of PDF handouts.
+Use lineage-skill to turn them into a course expert Skill.
+Keep sources wherever possible so I can trace answers later.
+```
+
+If you already have transcripts or notes:
+
+```text
+I already have course transcripts, OCR documents, and study notes.
+Skip fresh capture and package them directly into a source-backed, reviewable course Skill.
+```
+
+### 3. Use Natural Language
+
+After the Skill is generated, it behaves like a mentor focused on this course:
+
+```text
+How does this course explain positioning?
+```
+
+```text
+I just finished lessons 1-5. Review the key points and quiz me on likely confusions.
+```
+
+```text
+Turn the practical method from the course into a checklist I can follow.
+```
+
+```text
+Find three cases from the course and explain which method each one illustrates.
+```
+
+```text
+Which lesson does this quote or claim come from? Is there source evidence?
+```
+
+## What Can The Mentor Do?
+
+| Use Case | Example Prompt |
+| --- | --- |
+| Course Q&A | "How does this course explain X?" |
+| Lesson lookup | "Which lesson covers X?" |
+| Concept clarification | "Explain the differences between these concepts." |
+| Learning drill | "Ask me 10 questions based on the course." |
+| Review plan | "Give me a 7-day review path." |
+| Case organization | "Group the course cases by theme." |
+| Practical checklist | "Turn the teacher's method into a checklist." |
+| Template generation | "Create a reusable template based on the course method." |
+| Citation check | "Is this conclusion supported by course evidence?" |
+| Applied reasoning | "Use the teacher's method to analyze this concrete scenario." |
+| Work output | "Draft a plan using this course's method." |
+| Quality check | "Use the teacher's criteria to check what is missing in this plan." |
+
+## Optional Roles
+
+You can specify the intended use, or let the Agent choose. Course scope, evidence
+strictness, and learning progress are separate dimensions.
+
+| Role | Best For |
+| --- | --- |
+| `mentor` | Default dedicated mentor: Q&A, follow-up drills, review, application guidance, source lookup |
+| `expert` | Course expert: concept explanation, lesson lookup, course Q&A, citations |
+| `consultant` | Personal consultant: apply course methods to concrete situations |
+| `practitioner` | Playbooks, checklists, templates, and practical workflows |
+| `custom` | A custom role for your workflow |
+
+Other dimensions:
+
+| Dimension | Options |
+| --- | --- |
+| Course scope | Single course, multi-course with boundaries, multi-course fusion |
+| Evidence strategy | Standard citations, strict source tracing |
+| Learning progress | No progress tracking, or track progress and adjust plans |
+
+You can combine roles:
+
+```text
+Turn this course into mentor,practitioner roles.
+It should help me study like a mentor and also produce practical checklists.
+```
+
+## How To Describe Your Materials
+
+You do not need to organize everything perfectly in advance. Just tell the Agent
+what you have:
+
+```text
+Materials:
+- Video course directory with mp4 files
+- PDF handout directory
+- My own study notes
+
+Goal:
+- Answer according to the course's original intent
+- Keep sources
+- Organize cases and practical steps
+```
+
+For large materials:
+
+```text
+First inspect the material structure. Tell me what is missing, what can be done,
+and which part you recommend processing first.
+```
+
+## Boundaries
+
+This Skill should answer primarily from your course materials. If the course does
+not clearly cover something, the Agent should say so instead of presenting model
+inference as the course's intent.
+
+For medical, legal, financial, investment, or other high-risk domains, the Skill
+is for learning organization and source lookup only. It is not a substitute for
+professional advice.
+
+## Real Example
+
+[nihaisha-tcm](https://github.com/JuneYaooo/nihaisha-tcm) is a real Skill project
+created through this kind of course distillation flow. Its sources include
+**100GB+ of video course materials**, ultimately organized into a triggerable,
+searchable, and source-backed domain Skill.
+
+## Open Source Attribution
+
+If you use `lineage-skill` to distill a course and open-source the generated
+Skill, consider citing this repository in the generated project's README or notes
+so others can trace the method and tooling.
+
+You are also welcome to share high-quality open-source Skills or course knowledge
+projects in this repository's Issues.
+
+## License
+
+This project is licensed under the
+[PolyForm Noncommercial License 1.0.0](./LICENSE).
+
+For commercial use or business collaboration, contact <juneyaooo@gmail.com>.

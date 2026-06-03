@@ -12,6 +12,8 @@
 [![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-orange.svg)](./LICENSE)
 [![Skill](https://img.shields.io/badge/AI%20Agent-Skill-orange.svg)](./SKILL.md)
 
+[English](./README.en.md)
+
 </div>
 
 ---
@@ -58,6 +60,8 @@ Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate
 这意味着它会尽量先保留证据，再做总结；先区分课时、讲义、板书、案例和笔记，再把它们整理成概念、方法、步骤、模板和可追问的导师能力。
 
 所以它支持两种价值：
+
+![lineage-skill 方法论价值路径](./docs/img/lineage-methodology-value-zh.png)
 
 - **学习价值**：问答、复习、回查、追问、查漏补缺。
 - **工作价值**：把课程方法转成 SOP、checklist、playbook、brief、方案初稿、复盘表和质量检查规则。
