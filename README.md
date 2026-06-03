@@ -64,11 +64,102 @@
 
 ## 需要配置什么
 
-真正需要提前准备的是三件事：
+你只需要先准备课程材料、本地基础工具和模型接口。常用配置直接看这一节即可；`docs/install.md` 只保留给 Agent 自动安装用。
 
-- **课程材料**：视频、音频、PDF、讲义、截图、转录、OCR、笔记都可以。
-- **本地基础工具**：处理视频或原始音频时需要 `ffmpeg` / `ffprobe`。
-- **模型接口**：语音转文字、视频 / 视觉理解、文本蒸馏和可选 OCR / 文档解析，见 [docs/model-interfaces.md](./docs/model-interfaces.md)。
+### 1. 课程材料
+
+把材料放在一个本地目录里即可，不要求提前整理成固定格式：
+
+- 视频：`.mp4`
+- 音频：`.mp3`、`.wav`、`.m4a`、`.aac`、`.flac`、`.ogg`、`.opus`
+- 文档：PDF、讲义、截图、OCR Markdown
+- 已有文本：转录、课程笔记、学习总结、案例整理
+
+如果你已经有转录、OCR 文档或笔记，可以跳过重新转录和视觉分析，直接进入课程蒸馏和 Skill 生成。
+
+### 2. 本地工具
+
+基础依赖：
+
+```bash
+git
+python3
+pip
+```
+
+处理视频或原始音频时还需要：
+
+```bash
+ffmpeg
+ffprobe
+```
+
+macOS 可以用：
+
+```bash
+brew install ffmpeg
+```
+
+Ubuntu / Debian 可以用：
+
+```bash
+sudo apt-get update
+sudo apt-get install -y ffmpeg
+```
+
+只从已有转录、OCR 和笔记打包 Skill 时，可以暂时不装 `ffmpeg`。
+
+### 3. 模型接口
+
+`lineage-skill` 默认按 OpenAI-compatible 接口读取环境变量。推荐通过当前 Agent 的环境变量配置、系统环境变量或私有 `.env` 注入，不要把真实 key 写进 README、示例文件或公开仓库。
+
+如果你用本仓库脚本直跑，可以复制 `.env.example` 为 `.env`，只填写实际会用到的 provider：
+
+```bash
+cp .env.example .env
+```
+
+常用变量如下：
+
+```bash
+# 语音转文字：处理视频 / 音频时需要
+AUDIO_TRANSCRIBE_API_KEY=
+AUDIO_TRANSCRIBE_BASE_URL=https://api.siliconflow.cn/v1
+AUDIO_TRANSCRIBE_MODEL=FunAudioLLM/SenseVoiceSmall
+
+# 视频 / 视觉理解：需要有视频理解能力的模型
+LINEAGE_VISION_API_KEY=
+LINEAGE_VISION_BASE_URL=https://your-openai-compatible-vision-endpoint/v1
+LINEAGE_VISION_MODEL=gemini-3.1-pro-preview
+LINEAGE_VISION_TIMEOUT=600
+
+# 文本蒸馏：把转录、视觉分析、OCR 和笔记整理成课程知识结构时建议配置
+LINEAGE_TEXT_API_KEY=
+LINEAGE_TEXT_BASE_URL=https://api.openai.com/v1
+LINEAGE_TEXT_MODEL=gpt5.5
+LINEAGE_TEXT_MAX_TOKENS=4096
+LINEAGE_TEXT_TIMEOUT=300
+
+# 可选：PDF / OCR 文档解析。只有扫描 PDF、图片 PDF、复杂讲义需要提交给 MinerU 时才填
+MINERU_API_TOKEN=
+```
+
+最小配置按你的材料决定：
+
+| 你的材料 | 至少需要配置 |
+| --- | --- |
+| 已有转录、OCR、笔记 | `LINEAGE_TEXT_*`；如果只做本地抽取式整理，可把 `DISTILL_USE_LLM=0` |
+| 音频课程 | `AUDIO_TRANSCRIBE_*`、`LINEAGE_TEXT_*`，并安装 `ffmpeg` |
+| 视频课程，只关心老师说了什么 | `AUDIO_TRANSCRIBE_*`、`LINEAGE_TEXT_*`，并安装 `ffmpeg` |
+| 视频课程，还要理解 PPT / 板书 / 软件操作 | `AUDIO_TRANSCRIBE_*`、`LINEAGE_VISION_*`、`LINEAGE_TEXT_*`，并安装 `ffmpeg` |
+| 扫描 PDF / 图片 PDF / 复杂讲义 | 上面对应配置，加 `MINERU_API_TOKEN`；如果已有 OCR 结果，可以不配 MinerU |
+
+模型选择建议：
+
+- 语音转文字示例使用 SiliconFlow 的 `FunAudioLLM/SenseVoiceSmall`，适合先跑中文课程。
+- 视频 / 视觉理解模型必须支持视频输入，示例使用 `gemini-3.1-pro-preview`。
+- 文本蒸馏模型建议选长上下文、中文理解好、结构化输出稳定的模型。
+- OCR 结果只是证据层，扫描质量差、公式、表格和关键图示建议人工抽查。
 
 ## 怎么使用
 

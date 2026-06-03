@@ -12,12 +12,7 @@ Use this as an evidence-first workflow: preserve source material before summariz
 
 ## Read When Needed
 
-- Method and evidence rules: [references/methodology.md](references/methodology.md)
-- CoursePackage schema: [references/course-package.md](references/course-package.md)
-- Role selection: [references/skill-modes.md](references/skill-modes.md)
-- Environment variables: [references/configuration.md](references/configuration.md)
-- PDF/OCR workflow: [references/mineru-ocr.md](references/mineru-ocr.md)
-- Outputs, resume, and multi-course rules: [references/output-and-resume.md](references/output-and-resume.md)
+- Runtime reference: [references/runtime.md](references/runtime.md)
 
 ## Trigger Conditions
 
@@ -62,7 +57,7 @@ Capability is separate from configuration. If a provider is missing, report the 
 - Text distillation requires `LINEAGE_TEXT_API_KEY`, `LINEAGE_TEXT_BASE_URL`, and `LINEAGE_TEXT_MODEL` when `DISTILL_USE_LLM=1`.
   - Prefer long-context models with stable structured output and good support for the course language.
 - PDF/OCR submission requires `MINERU_API_TOKEN` unless reusing existing MinerU output with `--skip-submit`.
-- Local media handling requires `ffmpeg` and `ffprobe`, or `FFMPEG` / `FFPROBE` overrides.
+- Local media handling requires installed `ffmpeg` and `ffprobe`.
 
 When configuration is absent:
 
@@ -137,7 +132,7 @@ python scripts/run_course_pipeline.py \
   --output-dir ./dist
 ```
 
-Before using PDFs, check `MINERU_API_TOKEN`. If it is missing, read [references/mineru-ocr.md](references/mineru-ocr.md) and explain the fallback.
+Before using PDFs, check `MINERU_API_TOKEN`. If it is missing, read [references/runtime.md](references/runtime.md) and explain the fallback.
 
 ### Existing Materials
 

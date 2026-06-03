@@ -79,11 +79,52 @@ course materials and configure suitable model interfaces.
 
 ## Requirements
 
-You need three things:
+Everything commonly needed is listed here. `docs/install.md` is kept only for Agent-driven installation.
 
 - **Course materials**: videos, audio, PDFs, handouts, screenshots, transcripts, OCR output, and notes.
-- **Local tools**: `ffmpeg` / `ffprobe` when processing videos or raw audio.
-- **Model interfaces**: speech-to-text, video / vision understanding, text distillation, and optional OCR / document parsing. See [docs/model-interfaces.en.md](./docs/model-interfaces.en.md).
+- **Local tools**: `git`, `python3`, `pip`, plus `ffmpeg` / `ffprobe` when processing videos or raw audio.
+- **Model interfaces**: OpenAI-compatible speech-to-text, vision, text distillation, and optional MinerU OCR.
+
+If you run the repo scripts directly, copy `.env.example` to `.env` and fill only the providers you use:
+
+```bash
+cp .env.example .env
+```
+
+Common variables:
+
+```bash
+# Audio transcription
+AUDIO_TRANSCRIBE_API_KEY=
+AUDIO_TRANSCRIBE_BASE_URL=https://api.siliconflow.cn/v1
+AUDIO_TRANSCRIBE_MODEL=FunAudioLLM/SenseVoiceSmall
+
+# Vision analysis. Use a model with video-understanding support.
+LINEAGE_VISION_API_KEY=
+LINEAGE_VISION_BASE_URL=https://your-openai-compatible-vision-endpoint/v1
+LINEAGE_VISION_MODEL=gemini-3.1-pro-preview
+LINEAGE_VISION_TIMEOUT=600
+
+# Text distillation
+LINEAGE_TEXT_API_KEY=
+LINEAGE_TEXT_BASE_URL=https://api.openai.com/v1
+LINEAGE_TEXT_MODEL=gpt5.5
+LINEAGE_TEXT_MAX_TOKENS=4096
+LINEAGE_TEXT_TIMEOUT=300
+
+# Optional PDF OCR
+MINERU_API_TOKEN=
+```
+
+Minimum setup depends on the materials:
+
+| Materials | Minimum setup |
+| --- | --- |
+| Existing transcripts, OCR, and notes | `LINEAGE_TEXT_*`; use `DISTILL_USE_LLM=0` for local extractive fallback |
+| Audio course | `AUDIO_TRANSCRIBE_*`, `LINEAGE_TEXT_*`, and `ffmpeg` |
+| Video course, speech only | `AUDIO_TRANSCRIBE_*`, `LINEAGE_TEXT_*`, and `ffmpeg` |
+| Video course with slides / boards / screen demos | `AUDIO_TRANSCRIBE_*`, `LINEAGE_VISION_*`, `LINEAGE_TEXT_*`, and `ffmpeg` |
+| Scanned PDFs or complex handouts | Add `MINERU_API_TOKEN`; skip it if OCR output already exists |
 
 ## Usage
 

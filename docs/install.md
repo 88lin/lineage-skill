@@ -56,18 +56,18 @@ bash install_as_skill.sh --target openclaw
 ```bash
 # Audio transcription
 AUDIO_TRANSCRIBE_API_KEY=
-AUDIO_TRANSCRIBE_BASE_URL=https://api.openai.com/v1
-AUDIO_TRANSCRIBE_MODEL=whisper-1
+AUDIO_TRANSCRIBE_BASE_URL=https://api.siliconflow.cn/v1
+AUDIO_TRANSCRIBE_MODEL=FunAudioLLM/SenseVoiceSmall
 
-# Vision analysis
+# Vision analysis: use a model with video-understanding support
 LINEAGE_VISION_API_KEY=
-LINEAGE_VISION_BASE_URL=https://api.openai.com/v1
-LINEAGE_VISION_MODEL=gpt-4o
+LINEAGE_VISION_BASE_URL=https://your-openai-compatible-vision-endpoint/v1
+LINEAGE_VISION_MODEL=gemini-3.1-pro-preview
 
 # Text distillation
 LINEAGE_TEXT_API_KEY=
 LINEAGE_TEXT_BASE_URL=https://api.openai.com/v1
-LINEAGE_TEXT_MODEL=gpt-4o
+LINEAGE_TEXT_MODEL=gpt5.5
 
 # Optional PDF OCR
 MINERU_API_TOKEN=
