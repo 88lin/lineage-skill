@@ -36,6 +36,7 @@ This Skill owns the course-distillation pipeline. Do not describe transcription,
 Supported capabilities:
 
 - Extract audio from `.mp4` course videos and transcribe it through an OpenAI-compatible `/audio/transcriptions` endpoint.
+- Directly transcribe standalone `.mp3`, `.wav`, `.m4a`, `.aac`, `.flac`, `.ogg`, and `.opus` course audio files.
 - Split long audio into segments before transcription.
 - Analyze video content through a vision-capable model, including PPT, board writing, software screens, diagrams, tables, demonstrations, and other visual teaching material.
 - Compress and chunk large videos before visual analysis.
@@ -66,8 +67,11 @@ Capability is separate from configuration. If a provider is missing, report the 
 When configuration is absent:
 
 - If transcripts, OCR, notes, or previous distillation files already exist, skip the missing capture stage and continue with the smallest viable workflow.
-- If only raw videos exist and ASR or vision providers are missing, stop before the affected stage and tell the user exactly which variables or tools are missing.
+- If raw audio or videos need transcription and ASR is missing, stop before transcription and tell the user exactly which variables or tools are missing.
+- If raw videos need visual analysis and vision configuration is missing, stop before visual analysis or skip it only when the user accepts transcript-only processing.
 - If PDFs are present but MinerU is not configured, continue with non-PDF sources and explain that scanned/image PDF evidence was not included unless existing OCR output is available.
+
+Standalone audio files are transcribed by the capture stage, but they do not produce visual analysis or screenshots.
 
 ## Decision Flow
 
@@ -106,11 +110,11 @@ Default paths:
 
 ### Full Course Pipeline
 
-Use when raw course videos need transcription, visual analysis, distillation, packaging, and Skill generation.
+Use when raw course videos and/or audio files need transcription, visual analysis where video exists, distillation, packaging, and Skill generation.
 
 ```bash
 python scripts/run_course_pipeline.py \
-  --input-dir <course-video-dir> \
+  --input-dir <course-media-dir> \
   --course-name <course-name> \
   --skill-name <skill-name> \
   --mode mentor \
@@ -123,7 +127,7 @@ With PDFs/OCR:
 
 ```bash
 python scripts/run_course_pipeline.py \
-  --input-dir <course-video-dir> \
+  --input-dir <course-media-dir> \
   --documents-input <pdf-or-pdf-dir> \
   --course-name <course-name> \
   --skill-name <skill-name> \

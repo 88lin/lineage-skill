@@ -3,7 +3,6 @@
 """Batch course visual analysis and key screenshot extraction."""
 
 import os
-import sys
 import re
 import subprocess
 import argparse
@@ -413,14 +412,14 @@ def main():
     tmp_dir = tempfile.mkdtemp(prefix="video_analysis_")
 
     video_files = sorted(
-        os.path.join(args.input_dir, f)
-        for f in os.listdir(args.input_dir)
-        if f.lower().endswith(".mp4")
+        str(path)
+        for path in Path(args.input_dir).rglob("*")
+        if path.is_file() and path.suffix.lower() == ".mp4"
     )
 
     if not video_files:
-        print("❌ 未找到 .mp4")
-        sys.exit(1)
+        print("ℹ️ 未找到 .mp4，跳过视频画面分析")
+        return
 
     if args.start_at > 0:
         video_files = video_files[args.start_at:]

@@ -56,7 +56,7 @@ Keep source course workspaces and generated Skills separate. A course workspace 
 
 | Stage | Script | Main outputs |
 | --- | --- | --- |
-| Audio transcription | `scripts/transcribe_video.py` | `transcripts/*_transcript.json` |
+| Video/audio transcription | `scripts/transcribe_video.py` | `transcripts/*_transcript.json` |
 | Video visual analysis | `scripts/analyze_videos.py` | `analysis/*_analysis.md`, `analysis/screenshots/` |
 | PDF/OCR collection | `scripts/parse_mineru_documents.py` | `documents/mineru_manifest.json`, `documents/mineru_supplement.md`, `documents/mineru/` |
 | Course distillation | `scripts/distill_course.py` | `lesson_summaries.json`, `full_transcript.md`, `course_distillation_<date>.md/json` |
@@ -76,8 +76,8 @@ The pipeline is designed to be rerunnable, but resume support is stage-specific.
 
 | Stage | Resume behavior | Force behavior |
 | --- | --- | --- |
-| Transcription | Skips a video when `transcripts/<video>_transcript.json` already exists. | `--force` retranscribes existing videos. |
-| Visual analysis | Skips a video when `analysis/<video>_analysis.md` already exists. | `--force` reruns analysis and screenshot extraction. |
+| Transcription | Skips a media file when `transcripts/<media>_transcript.json` already exists. | `--force` retranscribes existing media files. |
+| Visual analysis | Skips a video when `analysis/<video>_analysis.md` already exists. If the input contains no `.mp4`, this stage exits successfully without outputs. | `--force` reruns analysis and screenshot extraction. |
 | MinerU/OCR | Reuses downloaded zip/extracted files when present; `--skip-submit` rebuilds the supplement from existing MinerU output. | No broad force flag; rerun with fresh inputs or remove the specific document output if needed. |
 | Distillation | `lesson_summaries.json` is used as a checkpoint; existing lesson summaries are reused. `--skip-summaries` reuses the whole summary file. | Rerun without `--skip-summaries` or remove stale distillation files when a clean regeneration is needed. |
 | CoursePackage | Rebuilds `course_package.json` from current source files. | Rebuild by running the command again. |
@@ -90,11 +90,12 @@ The full pipeline also supports stage-level skip flags:
 --skip-analyze
 --skip-documents
 --skip-distill
+--skip-summaries
 --skip-package
 --skip-build-skill
 ```
 
-Use these when upstream artifacts already exist and you only want to continue from a later stage.
+Use stage-level skips when upstream artifacts already exist and you only want to continue from a later stage. Use `--skip-summaries` when you still want to regenerate course-level distillation but reuse the existing `lesson_summaries.json` checkpoint.
 
 ## Progress Records
 

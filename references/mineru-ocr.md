@@ -14,7 +14,7 @@ Use this only when course materials include PDFs, scans, handouts, or slide expo
 
 ```bash
 python scripts/run_course_pipeline.py \
-  --input-dir <course-video-dir> \
+  --input-dir <course-media-dir> \
   --documents-input <pdf-or-pdf-dir> \
   --course-name <course-name> \
   --skill-name <skill-name> \

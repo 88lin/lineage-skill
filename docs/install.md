@@ -12,9 +12,9 @@
 
 - 必需：`git`、`python3`、`pip`
 - 建议：Python 3.11+
-- 可选：`ffmpeg` / `ffprobe`，用于视频音频提取和视频分析
+- 处理原始媒体时必需：`ffmpeg` / `ffprobe`，用于视频音频提取、媒体时长读取、压缩、切分和截图
 
-如果缺少 `git`、`python3` 或 `pip`，先用系统包管理器安装。`ffmpeg` 可以等用户真的要处理视频时再安装。
+如果缺少 `git`、`python3` 或 `pip`，先用系统包管理器安装。只从已有转录、OCR、笔记打包 Skill 时可以暂不安装 `ffmpeg`；一旦要处理 `.mp4` 视频或原始音频文件，就需要先安装 `ffmpeg` / `ffprobe`。
 
 ## 安装步骤
 

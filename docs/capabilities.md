@@ -18,6 +18,7 @@ course materials
 | --- | --- | --- |
 | Video files | Supported | `.mp4` discovery is built into the current scripts. |
 | Audio inside video | Supported | Extracted with `ffmpeg`, then sent to an OpenAI-compatible transcription endpoint. |
+| Standalone audio files | Supported for transcription | `.mp3`, `.wav`, `.m4a`, `.aac`, `.flac`, `.ogg`, and `.opus` are sent directly to the transcription endpoint; they do not produce visual analysis. |
 | Long videos | Supported | Visual analysis supports compression and chunking. |
 | PPT / board / software screens | Supported through video analysis | Key frames are identified by the vision model and extracted as screenshots. |
 | PDF files | Supported through MinerU | `parse_mineru_documents.py` parses PDFs and collects OCR Markdown outputs. |
@@ -28,7 +29,7 @@ course materials
 
 | Capability | Script | Status |
 | --- | --- | --- |
-| Video transcription | `scripts/transcribe_video.py` | Supported |
+| Video/audio transcription | `scripts/transcribe_video.py` | Supported |
 | Long-audio segmentation | `scripts/transcribe_video.py` | Supported |
 | Video visual analysis | `scripts/analyze_videos.py` | Supported |
 | Large-video compression and chunking | `scripts/analyze_videos.py` | Supported |

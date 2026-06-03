@@ -26,7 +26,7 @@ Expected course workspace:
 └── lineage_progress.json
 ```
 
-The workspace root should also contain `course_catalog.json` after a full pipeline or catalog build.
+The base-dir root, not the individual course directory, should also contain `course_catalog.json` after a full pipeline or catalog build.
 
 ## Generated Skill
 
@@ -45,8 +45,8 @@ Expected generated Skill:
 
 | Stage | Existing artifact | Resume rule |
 | --- | --- | --- |
-| Transcription | `transcripts/<video>_transcript.json` | Skip that video unless `--force` is requested. |
-| Visual analysis | `analysis/<video>_analysis.md` | Skip that video unless `--force` is requested. |
+| Transcription | `transcripts/<media>_transcript.json` | Skip that media file unless `--force` is requested. |
+| Visual analysis | `analysis/<video>_analysis.md` | Skip that video unless `--force` is requested; if there are no `.mp4` files, this stage exits successfully without outputs. |
 | OCR | `documents/mineru_manifest.json`, `documents/mineru/`, `documents/mineru_supplement.md` | Use `--skip-submit` to rebuild supplement from existing MinerU output. |
 | Lesson summaries | `lesson_summaries.json` | Reuse existing lesson summaries as checkpoint. |
 | Course distillation | `course_distillation_<date>.md/json` | Prefer the newest distillation unless the user asks to regenerate. |
@@ -59,6 +59,7 @@ Expected generated Skill:
 - Prefer the smallest workflow that advances from existing artifacts.
 - Do not rerun expensive ASR, vision, or OCR stages when their outputs already exist and the user did not ask for regeneration.
 - Use stage skip flags in `run_course_pipeline.py` when upstream artifacts are already present.
+- Use `--skip-summaries` in `run_course_pipeline.py` when reusing `lesson_summaries.json` but regenerating course-level distillation.
 - Use `--force` only when the user asks to rebuild stale outputs or when a previous output is known bad.
 - If a stage fails, preserve completed stage outputs and report the next command that can resume.
 - Treat stdout progress as ephemeral; durable progress is represented by `lineage_progress.json` and artifacts on disk.

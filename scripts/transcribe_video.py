@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Batch course video transcription via an OpenAI-compatible audio API."""
+"""Batch course video/audio transcription via an OpenAI-compatible audio API."""
 
 import os
 import sys
@@ -9,6 +9,8 @@ import time
 import subprocess
 import argparse
 import requests
+import shutil
+import mimetypes
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -19,11 +21,15 @@ BASE_DIR = str(Path(__file__).resolve().parents[1])
 AUDIO_TRANSCRIBE_API_KEY = os.getenv("AUDIO_TRANSCRIBE_API_KEY", "")
 AUDIO_TRANSCRIBE_BASE_URL = os.getenv("AUDIO_TRANSCRIBE_BASE_URL", "https://api.openai.com/v1")
 AUDIO_TRANSCRIBE_MODEL = os.getenv("AUDIO_TRANSCRIBE_MODEL", "whisper-1")
+FFMPEG = os.getenv("FFMPEG") or shutil.which("ffmpeg") or "ffmpeg"
+FFPROBE = os.getenv("FFPROBE") or shutil.which("ffprobe") or "ffprobe"
+VIDEO_SUFFIXES = {".mp4"}
+AUDIO_SUFFIXES = {".mp3", ".wav", ".m4a", ".aac", ".flac", ".ogg", ".opus"}
 
 
 def extract_audio(video_path: str, audio_path: str) -> bool:
     cmd = [
-        "ffmpeg", "-i", video_path,
+        FFMPEG, "-i", video_path,
         "-vn", "-acodec", "libmp3lame",
         "-q:a", "2", "-y", audio_path,
     ]
@@ -37,7 +43,7 @@ def extract_audio(video_path: str, audio_path: str) -> bool:
 
 def get_audio_duration(audio_path: str) -> float:
     cmd = [
-        "ffprobe", "-v", "error",
+        FFPROBE, "-v", "error",
         "-show_entries", "format=duration",
         "-of", "default=noprint_wrappers=1:nokey=1",
         audio_path,
@@ -51,7 +57,7 @@ def get_audio_duration(audio_path: str) -> float:
 
 def extract_audio_segment(audio_path: str, start: float, duration: float, output_path: str) -> bool:
     cmd = [
-        "ffmpeg",
+        FFMPEG,
         "-ss",
         str(start),
         "-t",
@@ -87,10 +93,11 @@ def transcribe_audio_api(audio_path: str, max_retries: int = 5) -> dict:
                 print(f"  重试 {attempt}/{max_retries} ...")
 
             with open(audio_path, "rb") as f:
+                mime_type = mimetypes.guess_type(audio_path)[0] or "application/octet-stream"
                 response = requests.post(
                     f"{AUDIO_TRANSCRIBE_BASE_URL.rstrip('/')}/audio/transcriptions",
                     headers={"Authorization": f"Bearer {AUDIO_TRANSCRIBE_API_KEY}"},
-                    files={"file": (os.path.basename(audio_path), f, "audio/mpeg")},
+                    files={"file": (os.path.basename(audio_path), f, mime_type)},
                     data={"model": AUDIO_TRANSCRIBE_MODEL},
                     timeout=300,
                 )
@@ -117,7 +124,7 @@ def transcribe_audio_api(audio_path: str, max_retries: int = 5) -> dict:
     raise Exception("音频转录 API 调用失败")
 
 
-def transcribe_audio(audio_path: str, video_name: str, segment_minutes: int = 30) -> dict:
+def transcribe_audio(audio_path: str, media_name: str, segment_minutes: int = 30, temp_dir: str | None = None) -> dict:
     file_size_mb = os.path.getsize(audio_path) / (1024 * 1024)
     duration = get_audio_duration(audio_path)
     if file_size_mb <= 80:
@@ -125,6 +132,7 @@ def transcribe_audio(audio_path: str, video_name: str, segment_minutes: int = 30
 
     print(f"  音频较大，分段转写: {duration/60:.1f} 分钟, {segment_minutes} 分钟/段")
     segment_seconds = segment_minutes * 60
+    segment_dir = temp_dir or os.path.dirname(audio_path)
     parts = []
     segments = []
     start = 0.0
@@ -132,8 +140,8 @@ def transcribe_audio(audio_path: str, video_name: str, segment_minutes: int = 30
     while start < duration:
         part_duration = min(segment_seconds, duration - start)
         part_path = os.path.join(
-            os.path.dirname(audio_path),
-            f"{video_name}_segment_{index:02d}.mp3",
+            segment_dir,
+            f"{media_name}_segment_{index:02d}.mp3",
         )
         print(f"  分段 {index}: {start/60:.1f}-{(start+part_duration)/60:.1f} 分钟")
         if not extract_audio_segment(audio_path, start, part_duration, part_path):
@@ -162,27 +170,27 @@ def transcribe_audio(audio_path: str, video_name: str, segment_minutes: int = 30
     }
 
 
-def process_video(video_path: str, output_dir: str, force: bool = False) -> bool:
-    video_name = Path(video_path).stem
-    output_path = os.path.join(output_dir, f"{video_name}_transcript.json")
+def process_video(video_path: str, output_dir: str, media_name: str, force: bool = False) -> bool:
+    output_path = os.path.join(output_dir, f"{media_name}_transcript.json")
 
     if os.path.exists(output_path) and not force:
-        print(f"  ⏭ 跳过: {video_name}")
+        print(f"  ⏭ 跳过: {media_name}")
         return True
 
     print(f"\n{'='*60}")
-    print(f"📹 {video_name}")
+    print(f"📹 {media_name}")
 
-    audio_path = os.path.join(output_dir, f"{video_name}_temp_audio.mp3")
+    audio_path = os.path.join(output_dir, f"{media_name}_temp_audio.mp3")
     print(f"  🎵 提取音频 ...")
     if not extract_audio(video_path, audio_path):
         print(f"  ❌ 音频提取失败")
         return False
 
     try:
-        result = transcribe_audio(audio_path, video_name)
-        result["video"] = video_name
+        result = transcribe_audio(audio_path, media_name)
+        result["video"] = media_name
         result["video_path"] = str(Path(video_path).absolute())
+        result["source_type"] = "video"
 
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
@@ -197,48 +205,97 @@ def process_video(video_path: str, output_dir: str, force: bool = False) -> bool
             os.remove(audio_path)
 
 
+def process_audio(audio_path: str, output_dir: str, media_name: str, force: bool = False) -> bool:
+    output_path = os.path.join(output_dir, f"{media_name}_transcript.json")
+
+    if os.path.exists(output_path) and not force:
+        print(f"  ⏭ 跳过: {media_name}")
+        return True
+
+    print(f"\n{'='*60}")
+    print(f"🎧 {media_name}")
+
+    try:
+        result = transcribe_audio(audio_path, media_name, temp_dir=output_dir)
+        result["video"] = media_name
+        result["audio_path"] = str(Path(audio_path).absolute())
+        result["source_type"] = "audio"
+
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+
+        print(f"  ✅ {len(result['full_text'])} 字, {result['duration']/60:.1f} 分钟")
+        return True
+    except Exception as e:
+        print(f"  ❌ 转录失败: {e}")
+        return False
+
+
+def media_output_name(path: Path, input_dir: Path) -> str:
+    rel = path.relative_to(input_dir)
+    if len(rel.parts) == 1:
+        return path.stem
+    prefix = "_".join(rel.parts[:-1])
+    return f"{prefix}_{path.stem}"
+
+
 def main():
-    parser = argparse.ArgumentParser(description="批量视频语音转写")
-    parser.add_argument("--input-dir", required=True, help="视频目录路径")
+    parser = argparse.ArgumentParser(description="批量视频/音频转写")
+    parser.add_argument("--input-dir", required=True, help="视频或音频目录路径")
     parser.add_argument("--course-name", required=True, help="课程名称（用于输出子目录）")
     parser.add_argument("--base-dir", default=BASE_DIR, help="课程输出根目录，默认当前项目目录")
     parser.add_argument("--force", action="store_true", help="强制重新处理")
-    parser.add_argument("--limit", type=int, default=0, help="最多处理 N 个视频")
+    parser.add_argument("--limit", type=int, default=0, help="最多处理 N 个媒体文件")
     args = parser.parse_args()
 
     output_dir = os.path.join(args.base_dir, args.course_name, "transcripts")
     os.makedirs(output_dir, exist_ok=True)
 
-    video_files = sorted(
-        str(path)
-        for path in Path(args.input_dir).rglob("*")
-        if path.is_file() and path.suffix.lower() == ".mp4"
+    input_dir = Path(args.input_dir).expanduser().resolve()
+    media_files = sorted(
+        path
+        for path in input_dir.rglob("*")
+        if path.is_file() and path.suffix.lower() in VIDEO_SUFFIXES | AUDIO_SUFFIXES
     )
 
-    if not video_files:
-        print(f"❌ 在 {args.input_dir} 中未找到 .mp4 文件")
+    if not media_files:
+        print(f"❌ 在 {args.input_dir} 中未找到支持的媒体文件: {', '.join(sorted(VIDEO_SUFFIXES | AUDIO_SUFFIXES))}")
         sys.exit(1)
+
+    video_count = sum(1 for path in media_files if path.suffix.lower() in VIDEO_SUFFIXES)
+    audio_count = sum(1 for path in media_files if path.suffix.lower() in AUDIO_SUFFIXES)
 
     if not AUDIO_TRANSCRIBE_API_KEY:
         print("❌ 未设置 AUDIO_TRANSCRIBE_API_KEY，请检查 .env")
         sys.exit(1)
 
-    print(f"📂 {len(video_files)} 个视频")
+    print(f"📂 {len(media_files)} 个媒体文件（视频 {video_count} / 音频 {audio_count}）")
     print(f"📁 {output_dir}")
     print(f"🤖 {AUDIO_TRANSCRIBE_MODEL}")
 
     if args.limit > 0:
-        video_files = video_files[:args.limit]
+        media_files = media_files[:args.limit]
         print(f"📏 限 {args.limit} 个")
 
     success = failed = 0
-    for vf in video_files:
-        if process_video(vf, output_dir, args.force):
+    used_names: dict[str, int] = {}
+    for media_path in media_files:
+        name = media_output_name(media_path, input_dir)
+        count = used_names.get(name, 0)
+        used_names[name] = count + 1
+        if count:
+            name = f"{name}_{count + 1}"
+
+        if media_path.suffix.lower() in VIDEO_SUFFIXES:
+            ok = process_video(str(media_path), output_dir, name, args.force)
+        else:
+            ok = process_audio(str(media_path), output_dir, name, args.force)
+        if ok:
             success += 1
         else:
             failed += 1
 
-    print(f"\n✅ {success} / ❌ {failed} / 共 {len(video_files)}")
+    print(f"\n✅ {success} / ❌ {failed} / 共 {len(media_files)}")
 
 
 if __name__ == "__main__":

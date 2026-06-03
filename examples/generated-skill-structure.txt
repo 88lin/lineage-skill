@@ -46,8 +46,14 @@ references 应包含：
 
 不同 mode 会增加额外 references：
 
-- study-coach: review_prompts.md, learning_plans.md, difficulty_map.json, learning_checks.json
+- mentor: mentor_playbook.md, mentor_sessions.md, learner_progress.json
+- consultant: consulting_playbook.md, scenario_templates.md
 - practitioner: playbooks.md, checklists.md, templates.md, case_index.json
-- citation-archive: source_manifest.json, confidence_rules.md
-- knowledge-base: course_catalog.json, cross_course_topics.json, concept_aliases.json, teacher_views.md
-- domain-expert: domain_map.md, method_library.md, case_library.json, source_courses.json, boundary_rules.md
+- custom: custom_role.md, custom_workflows.md
+
+兼容别名：
+
+- study-coach -> mentor，并设置 progress=tracked
+- citation-archive -> expert，并设置 evidence=strict
+- knowledge-base -> expert，并设置 scope=multi-course
+- domain-expert -> expert，并设置 scope=fused

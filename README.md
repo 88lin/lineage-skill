@@ -68,7 +68,7 @@ Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate
 
 | 能力 | 它会做什么 | 产物 |
 | --- | --- | --- |
-| 视频语音转录 | 从 `.mp4` 提取音频，调用语音转文字模型；长音频会自动分段 | `transcripts/*.json` |
+| 视频 / 音频转录 | 从 `.mp4` 提取音频，或直接转录 `.mp3`、`.wav`、`.m4a` 等音频；长音频会自动分段 | `transcripts/*.json` |
 | 视频视觉理解 | 调用视觉模型分析 PPT、板书、软件界面、图表、动作示范和关键画面 | `analysis/*_analysis.md` |
 | 大视频处理 | 对大视频压缩、按时间分片，降低模型上传和理解压力 | 分片分析结果 |
 | 干货截图提取 | 让视觉模型标记值得回看的画面，再从原视频抽帧；相似截图会去重 | `analysis/screenshots/` |
@@ -86,8 +86,8 @@ Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate
 
 | 要准备 | 说明 |
 | --- | --- |
-| 课程材料 | 视频、音频、PDF、讲义、截图、转录、OCR、笔记都可以；材料越完整，导师越接近课程原意。 |
-| `ffmpeg` / `ffprobe` | 用于从视频提取音频、压缩视频、切分视频、抽取关键截图。 |
+| 课程材料 | 视频、音频、PDF、讲义、截图、转录、OCR、笔记都可以；视频会进入转录和视觉分析，独立音频会进入转录。材料越完整，导师越接近课程原意。 |
+| `ffmpeg` / `ffprobe` | 用于从视频提取音频、读取媒体时长、分段长音频、压缩/切分视频、抽取关键截图。 |
 | 语音转文字模型 | 负责还原“老师说了什么”。中文课程可以优先试 `SenseVoiceSmall` / FunASR 体系；英文或多语言课程可以用 `whisper-1`、`gpt-4o-transcribe`、`gpt-4o-mini-transcribe`。 |
 | 视频 / 视觉模型 | 负责理解“画面里讲了什么”。建议选择对长视频、PPT、板书、软件界面和截图理解能力强的模型，比如 Gemini 这类强视频理解模型。 |
 | 文本蒸馏模型 | 负责把转录、视觉分析、OCR 和笔记压缩成课程知识结构。建议使用长上下文、结构化输出稳定、中文理解好的模型。 |
@@ -126,7 +126,7 @@ https://raw.githubusercontent.com/JuneYaooo/lineage-skill/main/docs/install.md
 例如：
 
 ```text
-我有一个视频课程目录，还有一批 PDF 讲义。
+我有一个视频/音频课程目录，还有一批 PDF 讲义。
 请用 lineage-skill 把它们整理成一个课程专家 Skill。
 回答时要尽量保留来源，方便我以后回查。
 ```

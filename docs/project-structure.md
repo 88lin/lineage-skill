@@ -56,7 +56,7 @@ These scripts implement the course-to-Skill pipeline.
 | Script | Role |
 | --- | --- |
 | `scripts/run_course_pipeline.py` | Orchestrates the full pipeline from videos/documents to generated Skill. |
-| `scripts/transcribe_video.py` | Extracts audio from `.mp4` files and transcribes via an OpenAI-compatible audio endpoint. |
+| `scripts/transcribe_video.py` | Transcribes `.mp4` video audio and standalone audio files through an OpenAI-compatible audio endpoint. |
 | `scripts/analyze_videos.py` | Runs visual analysis, handles large-video compression/chunking, extracts key screenshots, and de-duplicates them. |
 | `scripts/parse_mineru_documents.py` | Collects MinerU/OCR outputs for PDF and document evidence. |
 | `scripts/distill_course.py` | Distills transcripts, visual analysis, OCR, and notes into course-level structured notes. |
@@ -123,7 +123,7 @@ course materials
 
 The current project can:
 
-- process `.mp4` video courses;
+- process `.mp4` video courses and standalone course audio files for transcription;
 - transcribe audio through a configured ASR endpoint;
 - analyze video content with a configured vision model;
 - compress and chunk large videos;

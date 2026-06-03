@@ -111,7 +111,7 @@ def run(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run transcription, visual analysis, distillation, and skill packaging.")
-    parser.add_argument("--input-dir", required=True, help="Directory containing course .mp4 files.")
+    parser.add_argument("--input-dir", required=True, help="Directory containing course .mp4 video files and/or supported audio files.")
     parser.add_argument("--documents-input", action="append", help="Optional PDF file or directory for MinerU OCR. Repeatable.")
     parser.add_argument("--course-name", required=True, help="Course output directory name.")
     parser.add_argument("--skill-name", help="Generated skill name. Defaults to <course-slug>-<role>-lineage.")
@@ -127,9 +127,10 @@ def main() -> None:
     parser.add_argument("--skip-analyze", action="store_true")
     parser.add_argument("--skip-documents", action="store_true")
     parser.add_argument("--skip-distill", action="store_true")
+    parser.add_argument("--skip-summaries", action="store_true", help="Pass through to distill_course.py to reuse lesson_summaries.json.")
     parser.add_argument("--skip-package", action="store_true")
     parser.add_argument("--skip-build-skill", action="store_true")
-    parser.add_argument("--limit", type=int, default=0, help="Limit video count for transcribe/analyze smoke runs.")
+    parser.add_argument("--limit", type=int, default=0, help="Limit media count for transcribe/analyze smoke runs.")
     args = parser.parse_args()
 
     py = sys.executable
@@ -241,6 +242,7 @@ def main() -> None:
             args.course_name,
             "--base-dir",
             str(base_dir),
+            *(["--skip-summaries"] if args.skip_summaries else []),
         ],
         args.skip_distill,
         stage="distill",

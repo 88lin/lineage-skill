@@ -53,6 +53,8 @@ MINERU_LANGUAGE=ch
 
 ## Local Tool Overrides
 
+Used by media transcription and video analysis stages.
+
 ```bash
 FFMPEG=
 FFPROBE=

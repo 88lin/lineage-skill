@@ -3,17 +3,17 @@
 
 输入
 │
-└─ 视频课程目录
-    └─ *.mp4
+└─ 视频 / 音频课程目录
+    └─ *.mp4 / *.mp3 / *.wav / *.m4a / ...
     │
     ▼
 
 ┌─────────────────────────────────────────────────────────────────┐
-│ Stage 1：语音转录                                                │
+│ Stage 1：视频 / 音频转录                                         │
 │ scripts/transcribe_video.py                                      │
 ├─────────────────────────────────────────────────────────────────┤
 │ python scripts/transcribe_video.py \                            │
-│   --input-dir <视频目录> \                                      │
+│   --input-dir <视频或音频目录> \                                │
 │   --course-name <课程名称>                                      │
 │                                                                 │
 │ 输出：<course>/transcripts/*.json                               │
@@ -72,7 +72,7 @@
 ==========
 
 python scripts/run_course_pipeline.py \
-  --input-dir <视频目录> \
+  --input-dir <视频或音频目录> \
   --course-name <课程名称> \
   --skill-name <skill名称> \
   --output-dir <skills目录>

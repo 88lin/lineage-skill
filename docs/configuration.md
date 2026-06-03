@@ -83,6 +83,8 @@ OCR notes:
 
 ## Local Tool Overrides
 
+Used by media transcription and video analysis stages.
+
 | Variable | Required | Description |
 | --- | --- | --- |
 | `FFMPEG` | No | Custom `ffmpeg` path. |
