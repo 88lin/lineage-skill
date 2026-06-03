@@ -38,46 +38,24 @@ course mentor I can call on at any time."
 
 ## Why It Matters
 
-Most courses lose value quickly after you finish them. Videos are long, handouts
-are scattered, cases are hard to find, and methods are difficult to reuse when
-you need them later.
+Most courses fade after you finish them: videos are too long, handouts are
+scattered, cases are hard to find, and the method is hard to reuse when you need
+it later.
 
-`lineage-skill` does not compress a course into a one-page summary. It turns the
-course into a reusable learning system:
-
-- **Preserve original intent**: keep sources, lessons, screenshots, handouts, and transcripts before summarizing.
-- **Build knowledge structure**: extract concepts, themes, methods, cases, quotes, steps, and boundaries.
-- **Support continuous questioning**: ask "why", "how do I judge", "how exactly do I do this", and "where is the source".
-- **Serve real work**: turn course methods into checklists, workflows, templates, and practical decision rules.
-- **Create a personal asset**: each course can become a reusable, reviewable, and transferable Agent Skill.
-
-Once it works well, the mentor can also help you do real work:
-
-- **Apply course methods to real tasks**: break down problems, draft plans, and check omissions using the teacher's method.
-- **Turn abstract experience into executable artifacts**: SOPs, briefs, review forms, checklists, scripts, outlines, and decision frameworks.
-- **Act as an expert inside workflows**: writing, consulting, operations, teaching, research, product design, and other knowledge work.
-- **Make the course a productivity tool**: instead of rewatching the course, let the Agent carry the course method into daily work.
-
-## Methodology
-
-Yes. `lineage-skill` is not "throw the materials into a model and summarize".
-It follows a course knowledge asset production flow:
-
-```text
-Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate
-collect   -> source -> distill  -> link    -> skill   -> assess
-```
-
-It preserves evidence first, then summarizes. It separates lessons, handouts,
-whiteboards, cases, and notes before reorganizing them into concepts, methods,
-steps, templates, and mentor capabilities.
+`lineage-skill` is not a summary tool. It turns a course into a
+**queryable, traceable, and executable** knowledge asset.
 
 ![lineage-skill methodology value path](./docs/img/lineage-methodology-value-en.png)
 
-This supports two kinds of value:
+It follows `Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate`:
+preserve evidence first, then distill it; separate lessons, handouts,
+whiteboards, cases, and notes before reorganizing them into concepts, methods,
+steps, templates, and mentor capabilities.
 
-- **Learning value**: Q&A, review, source lookup, follow-up questions, gap checks, and learning paths.
-- **Work value**: turn course methods into SOPs, checklists, playbooks, briefs, drafts, review forms, and quality checks.
+- **Keep the teacher's intent**: important claims can trace back to lessons, source text, screenshots, or handouts.
+- **Go beyond review**: ask questions, look up sources, follow up, and find gaps until the course actually sticks.
+- **Go beyond learning**: turn the teacher's method into SOPs, checklists, playbooks, briefs, drafts, and quality checks.
+- **Stop rewatching from scratch**: let the Agent carry the course method into your daily work.
 
 ## Capabilities
 
