@@ -2,11 +2,11 @@
 
 # Lineage Skill
 
-**Turn a full course into a long-lived AI mentor for learning and practice.**
+**Turn a dense course into a source-backed, transferable, output-producing private method system.**
 
-Convert videos, handouts, whiteboards, transcripts, screenshots, and notes into
-traceable course knowledge, then let an Agent answer questions, review lessons,
-run drills, locate sources, and generate practical outputs from that course.
+Extract judgment frameworks, case experience, operating processes, and quality
+standards from videos, handouts, whiteboards, transcripts, and notes, then let an
+Agent carry the teacher's method into your learning, decisions, and work output.
 
 For Codex / Claude Code / OpenClaw / Hermes / custom Agents.
 
@@ -21,20 +21,92 @@ For Codex / Claude Code / OpenClaw / Hermes / custom Agents.
 
 ## What Is This?
 
-`lineage-skill` is an Agent Skill for turning a complete set of course materials
-into a dedicated course mentor.
+`lineage-skill` is a course distillation Skill for Agents. It turns a complete
+set of videos, bootcamps, lectures, PDF handouts, whiteboards, screenshots,
+transcripts, and learning notes into an installable, callable, source-backed
+course mentor Skill.
 
-Its core value has two layers:
+It is not "summarize this course." It turns the course into a long-lived
+knowledge asset:
 
-1. **Course distillation**: organize videos, bootcamps, lectures, PDF handouts,
-   whiteboards, screenshots, transcripts, and learning notes into a structured,
-   source-backed course knowledge system.
-2. **Dedicated mentor**: let an Agent do more than summarize the course. It can
-   answer from the course's original intent, ask follow-up questions, plan review,
-   locate sources, and generate checklists, playbooks, and templates.
+- Preserve the teacher's intent: important claims can trace back to lessons,
+  source text, screenshots, or handouts.
+- Rebuild the course structure: organize scattered videos, handouts, cases, and
+  notes into concepts, methods, lesson indexes, and evidence maps.
+- Generate a usable mentor: let an Agent answer, quiz, review, rehearse, and
+  locate sources from the course.
+- Produce work assets: turn the teacher's method into checklists, playbooks,
+  templates, drafts, and quality criteria.
 
 In one sentence: turn "I bought, watched, or studied a course" into "I have a
 course mentor I can call on at any time."
+
+## Core Value After Distillation
+
+The expensive part of a serious course is usually not the list of facts. It is
+the teacher's judgment framework, way of decomposing problems, case experience,
+and implicit quality standards.
+
+`lineage-skill` extracts those from tens or hundreds of hours of material and
+turns them into Agent-callable capabilities:
+
+| Value | What The Course Becomes |
+| --- | --- |
+| **From content consumption to method asset** | Not just "I watched the course", but a concept system, decision criteria, operating process, case library, and template library. |
+| **From one-time learning to long-term coaching** | The Agent can question, review, and find weak spots according to your progress, turning the course into a training system. |
+| **From vague memory to source-backed knowledge** | Important claims can trace back to lessons, source text, screenshots, or handouts, so your interpretation does not silently replace the teacher's intent. |
+| **From understanding ideas to producing work** | Apply the teacher's method to real situations: draft plans, check plans, design workflows, write templates, and support decisions. |
+
+In other words, the point is not:
+
+> Summarize this course for me.
+
+The point is:
+
+> Turn a dense course into a private method system that can keep helping me learn, judge, and produce work.
+
+## Typical Output Scenarios
+
+| Scenario | Result You Actually Want | Example |
+| --- | --- | --- |
+| **Master the course** | Recover the through-line, hard parts, traps, and weak spots; let the Agent challenge you like a mentor | "I finished the first 5 lessons. Check where my understanding is still incomplete according to the teacher's system." |
+| **Trace the source intent** | Locate where a claim, case, or method came from, with quote or screenshot evidence when available | "Did the teacher actually say this? If yes, which lesson was it in and what was the original point?" |
+| **Transfer the teacher's method** | Apply course frameworks to your concrete situation instead of merely repeating concepts | "Use this course's method to analyze my business scenario and identify the key judgments and gaps." |
+| **Produce reusable assets** | Generate checklists, playbooks, templates, drafts, and quality criteria you can use repeatedly | "Turn the teacher's method into a workflow and checklist I can reuse on every project." |
+
+## Optional Roles
+
+You can specify the intended use, or let the Agent choose. Course scope, evidence
+strictness, and learning progress are separate dimensions.
+
+| Role | Best For |
+| --- | --- |
+| `mentor` | Learning internalization: questioning, review, correction, and staged plans that turn the course into a training system |
+| `expert` | Source tracing: concept explanation, lesson lookup, claim checking, and citations |
+| `consultant` | Situational judgment: transfer the teacher's method to your real problem and surface judgments, risks, and recommendations |
+| `practitioner` | Asset production: playbooks, checklists, templates, workflows, and quality rules |
+| `custom` | Custom workflows for your business, research, writing, or training process |
+
+Other dimensions:
+
+| Dimension | Options |
+| --- | --- |
+| Course scope | Single course, multi-course with boundaries, multi-course fusion |
+| Evidence strategy | Standard citations, strict source tracing |
+| Learning progress | No progress tracking, or track progress and adjust plans |
+
+You can combine roles:
+
+```text
+Turn this course into mentor,practitioner roles.
+It should help me study like a mentor and also produce practical checklists.
+```
+
+## Real Example
+
+| Name | Summary | Preview | Stars |
+| --- | --- | --- | --- |
+| [nihaisha-tcm](https://github.com/JuneYaooo/nihaisha-tcm) | An Agent Skill distilled from Ni Haixia TCM course materials. The source set includes **100GB+ of video course materials**, organized into a triggerable, searchable, source-backed domain Skill for course lookup, formula-pattern and acupoint study, note organization, and board screenshot evidence. | ![nihaisha-tcm preview](https://opengraph.githubassets.com/lineage-skill/JuneYaooo/nihaisha-tcm) | ![GitHub Repo stars](https://img.shields.io/github/stars/JuneYaooo/nihaisha-tcm?style=social) |
 
 ## Why It Matters
 
@@ -52,10 +124,12 @@ preserve evidence first, then distill it; separate lessons, handouts,
 whiteboards, cases, and notes before reorganizing them into concepts, methods,
 steps, templates, and mentor capabilities.
 
-- **Keep the teacher's intent**: important claims can trace back to lessons, source text, screenshots, or handouts.
-- **Go beyond review**: ask questions, look up sources, follow up, and find gaps until the course actually sticks.
-- **Go beyond learning**: turn the teacher's method into SOPs, checklists, playbooks, briefs, drafts, and quality checks.
-- **Stop rewatching from scratch**: let the Agent carry the course method into your daily work.
+- **Capture**: collect videos, audio, handouts, screenshots, OCR, transcripts, and notes.
+- **Cite**: preserve lessons, timestamps, quotes, screenshots, and document sources.
+- **Compress**: turn long material into structured summaries and course through-lines.
+- **Connect**: link concepts, cases, methods, lessons, and use scenarios.
+- **Codify**: turn the teacher's method into workflows, checklists, templates, and criteria.
+- **Evaluate**: use course standards for review, quality checks, follow-up questions, and applied critique.
 
 ## Capabilities
 
@@ -161,76 +235,24 @@ Skip fresh capture and package them directly into a source-backed, reviewable co
 After the Skill is generated, it behaves like a mentor focused on this course:
 
 ```text
-How does this course explain positioning?
+I finished the first 5 lessons. Review my understanding through the teacher's system and challenge the key judgments I may have missed.
 ```
 
 ```text
-I just finished lessons 1-5. Review the key points and quiz me on likely confusions.
+Use this course's method to analyze the real project below. Identify the key assumptions, judgment steps, and risks.
 ```
 
 ```text
-Turn the practical method from the course into a checklist I can follow.
+Turn the teacher's method into a reusable playbook: use cases, inputs, steps, review criteria, and common mistakes.
 ```
 
 ```text
-Find three cases from the course and explain which method each one illustrates.
+Is this conclusion actually grounded in the course? Give me the lesson, source gist, evidence strength, and which parts are inference.
 ```
 
 ```text
-Which lesson does this quote or claim come from? Is there source evidence?
+Use the teacher's quality criteria to review my plan. Tell me where it skips steps, lacks evidence, or drifts from the course method.
 ```
-
-## What Can The Mentor Do?
-
-| Use Case | Example Prompt |
-| --- | --- |
-| Course Q&A | "How does this course explain X?" |
-| Lesson lookup | "Which lesson covers X?" |
-| Concept clarification | "Explain the differences between these concepts." |
-| Learning drill | "Ask me 10 questions based on the course." |
-| Review plan | "Give me a 7-day review path." |
-| Case organization | "Group the course cases by theme." |
-| Practical checklist | "Turn the teacher's method into a checklist." |
-| Template generation | "Create a reusable template based on the course method." |
-| Citation check | "Is this conclusion supported by course evidence?" |
-| Applied reasoning | "Use the teacher's method to analyze this concrete scenario." |
-| Work output | "Draft a plan using this course's method." |
-| Quality check | "Use the teacher's criteria to check what is missing in this plan." |
-
-## Optional Roles
-
-You can specify the intended use, or let the Agent choose. Course scope, evidence
-strictness, and learning progress are separate dimensions.
-
-| Role | Best For |
-| --- | --- |
-| `mentor` | Default dedicated mentor: Q&A, follow-up drills, review, application guidance, source lookup |
-| `expert` | Course expert: concept explanation, lesson lookup, course Q&A, citations |
-| `consultant` | Personal consultant: apply course methods to concrete situations |
-| `practitioner` | Playbooks, checklists, templates, and practical workflows |
-| `custom` | A custom role for your workflow |
-
-Other dimensions:
-
-| Dimension | Options |
-| --- | --- |
-| Course scope | Single course, multi-course with boundaries, multi-course fusion |
-| Evidence strategy | Standard citations, strict source tracing |
-| Learning progress | No progress tracking, or track progress and adjust plans |
-
-You can combine roles:
-
-```text
-Turn this course into mentor,practitioner roles.
-It should help me study like a mentor and also produce practical checklists.
-```
-
-## Real Example
-
-[nihaisha-tcm](https://github.com/JuneYaooo/nihaisha-tcm) is a real Skill project
-created through this kind of course distillation flow. Its sources include
-**100GB+ of video course materials**, ultimately organized into a triggerable,
-searchable, and source-backed domain Skill.
 
 ## Open Source Attribution
 
