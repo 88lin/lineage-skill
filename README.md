@@ -84,21 +84,21 @@
 既能像导师一样陪我学习，也能输出实操清单。
 ```
 
-## 真实案例
+## 用 lineage-skill 蒸馏出的项目
 
-| 名字 | 简介 | 展示 | Stars |
+以下项目是基于 `lineage-skill` 流水线，从真实课程材料蒸馏出的专门领域 Skill。
+
+| 项目 | 简介 | 展示 | Stars |
 | --- | --- | --- | --- |
 | [nihaisha-tcm](https://github.com/JuneYaooo/nihaisha-tcm) | 倪海厦中医课程资料的 Agent Skill。来源包含 **100GB+ 视频课程材料**，最终沉淀成可触发、可检索、可溯源的专门领域 Skill，支持课程检索、方证穴位辨析、学习笔记整理与板书截图证据索引。 | ![nihaisha-tcm preview](https://opengraph.githubassets.com/lineage-skill/JuneYaooo/nihaisha-tcm) | ![GitHub Repo stars](https://img.shields.io/github/stars/JuneYaooo/nihaisha-tcm?style=social) |
 
-## 为什么有价值
+## 它如何实现这些价值
 
-大多数课程学完就散：视频太长，讲义太散，案例难找，方法想用时又找不到出处。
-
-`lineage-skill` 不是摘要工具，而是把课程炼成一套**可追问、可回查、可执行**的知识资产。
+这些价值不是靠一次性总结实现的，而是靠一条保留证据、压缩结构、再固化为能力的蒸馏路径。
 
 ![lineage-skill 方法论价值路径](./docs/img/lineage-methodology-value-zh.png)
 
-它按 `Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate` 工作：先保留证据，再压缩蒸馏；先区分课时、讲义、板书、案例和笔记，再整理成概念、方法、步骤、模板和导师能力。
+`lineage-skill` 按 `Capture -> Cite -> Compress -> Connect -> Codify -> Evaluate` 工作：先保留证据，再压缩蒸馏；先区分课时、讲义、板书、案例和笔记，再整理成概念、方法、步骤、模板和导师能力。
 
 - **Capture**：采集视频、音频、讲义、截图、OCR、转录和笔记。
 - **Cite**：保留课时、时间戳、原文、截图和文档来源。
