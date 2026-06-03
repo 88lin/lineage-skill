@@ -75,5 +75,4 @@ CoursePackage
   └─ domain-expert
 ```
 
-Details: [SKILL_MODES.md](../SKILL_MODES.md)
-
+Details: [skill-modes.md](./skill-modes.md)

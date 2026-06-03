@@ -2,7 +2,7 @@
 
 `师承.skill` 的基础方法论是 C5。它是一个面向 AI Skill 生成的课程炼化流程，理论上对应教学设计、认知学徒制、知识管理、多媒体学习和 RAG。
 
-详细理论基础见 [THEORETICAL_FOUNDATION.md](./THEORETICAL_FOUNDATION.md)。
+详细理论基础见 [theoretical-foundation.md](./theoretical-foundation.md)。
 
 ```text
 Capture → Cite → Compress → Connect → Codify

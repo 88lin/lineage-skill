@@ -49,7 +49,7 @@ course materials
 | `knowledge-base` | Multi-course catalog, aliases, topic mapping |
 | `domain-expert` | Domain map, method library, case library, boundary rules |
 
-More detail: [SKILL_MODES.md](../SKILL_MODES.md)
+More detail: [skill-modes.md](./skill-modes.md)
 
 ## Quality And Boundaries
 
@@ -80,4 +80,3 @@ Still limited:
 - semantic retrieval / vector index
 - multi-course merge workflow
 - feedback loop from Skill usage back into CoursePackage
-

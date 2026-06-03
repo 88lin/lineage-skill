@@ -4,6 +4,9 @@
 <generated-skill>/
 ├── SKILL.md
 ├── lineage_manifest.json
+├── agents/
+│   ├── openai.yaml
+│   └── openclaw.yaml
 ├── references/
 │   ├── course_package.json
 │   ├── course_digest.md

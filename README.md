@@ -38,7 +38,7 @@
 
 ```text
 请安装这个 Skill：
-https://github.com/JuneYaooo/lineage-skill
+https://raw.githubusercontent.com/JuneYaooo/lineage-skill/main/docs/install.md
 
 安装后请告诉我可以怎样把我的课程材料整理成课程专家。
 ```
@@ -147,16 +147,10 @@ https://github.com/JuneYaooo/lineage-skill
 
 ## 真实案例
 
-[JuneYaooo/nihaixia](https://github.com/JuneYaooo/nihaixia) 是通过这类课程蒸馏流程沉淀出来的真实 Skill 项目，来源包含 **100GB+ 视频课程材料**，最终整理成可触发、可检索、可溯源的专门领域 Skill。
-
-## 更多文档
-
-- [SKILL.md](./SKILL.md) - Agent 使用入口和执行规则
-- [docs/capabilities.md](./docs/capabilities.md) - 能做什么、不能做什么
-- [SKILL_MODES.md](./SKILL_MODES.md) - 不同使用模式说明
+[nihaisha-tcm](https://github.com/JuneYaooo/nihaisha-tcm) 是通过这类课程蒸馏流程沉淀出来的真实 Skill 项目，来源包含 **100GB+ 视频课程材料**，最终整理成可触发、可检索、可溯源的专门领域 Skill。
 
 ## License
 
-This project is licensed under the [PolyForm Noncommercial License 1.0.0](./LICENSE).
+本项目采用 [PolyForm Noncommercial License 1.0.0](./LICENSE) 授权。
 
-Noncommercial use is permitted. Commercial use requires separate authorization.
+允许非商业使用。商业使用需要单独授权。

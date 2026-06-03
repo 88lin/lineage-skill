@@ -221,6 +221,9 @@ __marimo__/
 .env.*
 !.env.example
 output/
+outputs/
+dist/
+logs/
 tmp/
 */transcripts/
 */analysis/

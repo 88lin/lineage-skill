@@ -461,6 +461,49 @@ if __name__ == "__main__":
     destination.chmod(0o755)
 
 
+def yaml_quote(value: str) -> str:
+    return json.dumps(value, ensure_ascii=False)
+
+
+def build_agent_metadata(course_name: str, skill_name: str, modes: list[str], agents_dir: Path) -> None:
+    agents_dir.mkdir(parents=True, exist_ok=True)
+    mode_labels = ", ".join(MODE_SPECS[mode]["label"] for mode in modes)
+    display_name = f"{course_name} Course Skill"
+    short_description = "Source-grounded course Q&A, review, and workflows."
+    default_prompt = f"Use ${skill_name} to answer questions about {course_name} and cite the course sources."
+
+    openai_yaml = "\n".join(
+        [
+            "interface:",
+            f"  display_name: {yaml_quote(display_name)}",
+            f"  short_description: {yaml_quote(short_description)}",
+            f"  default_prompt: {yaml_quote(default_prompt)}",
+            "",
+            "policy:",
+            "  allow_implicit_invocation: true",
+            "",
+        ]
+    )
+    (agents_dir / "openai.yaml").write_text(openai_yaml, encoding="utf-8")
+
+    openclaw_yaml = "\n".join(
+        [
+            "interface:",
+            f"  display_name: {yaml_quote(display_name)}",
+            f"  short_description: {yaml_quote(short_description)}",
+            f"  default_prompt: {yaml_quote(default_prompt.replace('$', ''))}",
+            "",
+            "# Trust surface:",
+            "#   - Reads packaged course reference files under references/.",
+            "#   - Runs local scripts/search_course_notes.py for lightweight keyword lookup.",
+            "#   - Does not call external services unless the host agent chooses to enrich or rebuild materials.",
+            f"#   - Active mode(s): {mode_labels}.",
+            "",
+        ]
+    )
+    (agents_dir / "openclaw.yaml").write_text(openclaw_yaml, encoding="utf-8")
+
+
 def write_extra_reference(destination: Path, value: object) -> str:
     if destination.exists():
         return "exists"
@@ -514,10 +557,12 @@ def main() -> None:
 
     references_dir = skill_dir / "references"
     scripts_dir = skill_dir / "scripts"
+    agents_dir = skill_dir / "agents"
     references_dir.mkdir(parents=True, exist_ok=True)
     scripts_dir.mkdir(parents=True, exist_ok=True)
 
     build_skill_md(args.course_name, skill_name, args.description, modes, skill_dir / "SKILL.md")
+    build_agent_metadata(args.course_name, skill_name, modes, agents_dir)
 
     statuses = {}
     statuses["course_package.json"] = copy_course_package(source_dir, references_dir / "course_package.json")

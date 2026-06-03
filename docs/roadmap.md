@@ -34,8 +34,8 @@
 产物：
 
 - README.md
-- METHODOLOGY.md
-- ROADMAP.md
+- docs/methodology.md
+- docs/roadmap.md
 - examples/
 
 ## v0.2：Course Skill Builder
