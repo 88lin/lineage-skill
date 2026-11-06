@@ -49,11 +49,11 @@ BASE_REFERENCES = [
     "study_paths.md",
 ]
 
-GENERATOR_ID = "lineage-skill"
-GENERATOR_REPOSITORY = "https://github.com/JuneYaooo/lineage-skill"
+GENERATOR_ID = "teacher-to-skills"
+GENERATOR_REPOSITORY = "https://github.com/JuneYaooo/teacher-to-skills"
 GENERATOR_SCRIPT = "scripts/build_course_skill.py"
 GENERATOR_SCHEMA_VERSION = "1.0"
-PROVENANCE_WATERMARK = "lineage-skill:cognitive-apprenticeship-builder:v1.0"
+PROVENANCE_WATERMARK = "teacher-to-skills:cognitive-apprenticeship-builder:v1.0"
 
 MODE_SPECS = {
     "mentor": {
@@ -603,14 +603,18 @@ def default_skill_name(course_name: str, modes: list[str]) -> str:
         suffix = "expert"
     else:
         suffix = "mentor"
-    lineage_suffix = f"{suffix}-lineage"
-    if slug.endswith(f"-{lineage_suffix}"):
+    full_suffix = f"{suffix}-skill"
+    if slug.endswith(f"-{full_suffix}"):
         return slug
+    if slug.endswith(f"-{suffix}-lineage"):
+        return f"{slug[: -len('-lineage')]}-skill"
     if slug.endswith(f"-{suffix}"):
-        return f"{slug}-lineage"
-    if slug.endswith("-lineage"):
-        slug = slug[: -len("-lineage")]
-    return f"{slug}-{lineage_suffix}"
+        return f"{slug}-skill"
+    for legacy in ("-lineage", "-skill"):
+        if slug.endswith(legacy):
+            slug = slug[: -len(legacy)]
+            break
+    return f"{slug}-{full_suffix}"
 
 
 def build_skill_md(
@@ -970,7 +974,7 @@ def write_mode_references(references_dir: Path, modes: list[str]) -> dict[str, s
     return statuses
 
 
-def build_lineage_manifest(
+def build_skill_manifest(
     course_name: str,
     skill_name: str,
     modes: list[str],
@@ -1016,7 +1020,7 @@ def build_lineage_manifest(
             "watermark": PROVENANCE_WATERMARK,
             "watermark_visibility": "manifest-only",
             "source_package": "references/course_package.json",
-            "note": "This packaged course Skill was generated from course materials by lineage-skill.",
+            "note": "This packaged course Skill was generated from course materials by teacher-to-skills.",
         },
         "reference_status": statuses,
         "package_schemas": {
@@ -1041,7 +1045,7 @@ def build_lineage_manifest(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Package prepared course materials as a Codex skill.")
     parser.add_argument("--course-name", required=True, help="Human-readable course name.")
-    parser.add_argument("--skill-name", help="Skill directory/name. Defaults to <course-slug>-<role>-lineage.")
+    parser.add_argument("--skill-name", help="Skill directory/name. Defaults to <course-slug>-<role>-skill.")
     parser.add_argument(
         "--mode",
         default="mentor",
@@ -1117,7 +1121,7 @@ def main() -> None:
             )
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    skill_dir = output_dir / f".{skill_name}.lineage-build"
+    skill_dir = output_dir / f".{skill_name}.teacher-to-skills-build"
     if skill_dir.exists():
         shutil.rmtree(skill_dir)
 
@@ -1214,7 +1218,7 @@ def main() -> None:
     statuses["scripts/fetch_course_evidence.py"] = "copied"
 
     mentor_package = mentor_info.get("mentor_package") if mentor_info else None
-    manifest = build_lineage_manifest(args.course_name, skill_name, modes, source_dir, statuses, options, mentor_package)
+    manifest = build_skill_manifest(args.course_name, skill_name, modes, source_dir, statuses, options, mentor_package)
     manifest["package_hashes"] = {
         name: content_hash(load_schema_json(path))
         for name in [
@@ -1227,7 +1231,7 @@ def main() -> None:
         ]
         if (path := references_dir / name).exists()
     }
-    write_json(skill_dir / "lineage_manifest.json", manifest)
+    write_json(skill_dir / "teacher_to_skills_manifest.json", manifest)
     if mentor_package:
         write_json(
             skill_dir / "mentor_manifest.json",

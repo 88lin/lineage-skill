@@ -72,7 +72,7 @@ def call_llm(messages: list) -> str:
 def llm_enabled() -> bool:
     if os.getenv("DISTILL_USE_LLM", "1").strip().lower() in {"0", "false", "no"}:
         return False
-    return bool(os.getenv("LINEAGE_TEXT_API_KEY"))
+    return bool(os.getenv("TEACHER_TO_SKILLS_TEXT_API_KEY"))
 
 
 def chunk_text(text: str, chunk_size: int | None = None, overlap: int | None = None) -> list[str]:

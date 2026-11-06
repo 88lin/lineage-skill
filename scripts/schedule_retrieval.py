@@ -30,7 +30,7 @@ def schedule(capability_id: str, *, base_time: dt.datetime, intervals: list[int]
             "last_result": last_result,
             "priority": "high" if high_confidence_error else "normal",
             "status": "due" if days <= 0 else "scheduled",
-            "scheduler_version": "lineage-spacing-1.0",
+            "scheduler_version": "teacher-to-skills-spacing-1.0",
         }
         for index, days in enumerate(adjusted)
     ]
@@ -52,7 +52,7 @@ def main() -> None:
     existing = {item["review_id"]: item for item in queue.get("items", [])}
     existing.update({item["review_id"]: item for item in new_items})
     queue["items"] = sorted(existing.values(), key=lambda item: (item["due_at"], item["review_id"]))
-    queue["scheduler"] = {"version": "lineage-spacing-1.0", "interval_days": intervals}
+    queue["scheduler"] = {"version": "teacher-to-skills-spacing-1.0", "interval_days": intervals}
     write_json(state_dir / "review_queue.json", queue)
     print(json.dumps({"scheduled": len(new_items), "queue": str(state_dir / "review_queue.json")}, ensure_ascii=False, indent=2))
 

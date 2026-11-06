@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
-  <title id="title">Lineage Skill four-layer architecture</title>
+  <title id="title">Teacher-to-Skills four-layer architecture</title>
   <desc id="desc">Four layers show source evidence, the teacher's method, guided practice, and private personal progress.</desc>
   <defs>
     <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F7F5F0"/><stop offset="1" stop-color="#EEF2F4"/></linearGradient>

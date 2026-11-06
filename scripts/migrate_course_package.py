@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Migrate legacy CoursePackage 0.x payloads to the Lineage 1.0 contract."""
+"""Migrate legacy CoursePackage 0.x payloads to the Teacher-to-Skills 1.0 contract."""
 
 from __future__ import annotations
 
@@ -329,7 +329,7 @@ def schema_path() -> Path:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Migrate CoursePackage 0.x to Lineage CoursePackage 1.0.")
+    parser = argparse.ArgumentParser(description="Migrate CoursePackage 0.x to Teacher-to-Skills CoursePackage 1.0.")
     parser.add_argument("input", help="Legacy course_package.json")
     parser.add_argument("--output", help="Output path; defaults to <input>.v1.json")
     parser.add_argument("--report", help="Migration report path")

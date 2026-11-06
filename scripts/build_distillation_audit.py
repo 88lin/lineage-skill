@@ -16,7 +16,7 @@ SLIDE_TERMS = ("ppt", "slide", "slides", "课件", "幻灯", "讲义", "coursewa
 BOARD_TERMS = ("板书", "白板", "blackboard", "whiteboard")
 DEMO_TERMS = ("演示", "demo", "操作", "software", "screen", "screens", "软件")
 DIAGRAM_TERMS = ("图表", "diagram", "chart", "流程图", "表格", "table")
-TERM_REVIEW_TERMS = ("术语", "专名", "错字", "校对", "同音", "ocr", "asr", "Lineage", "Skill")
+TERM_REVIEW_TERMS = ("术语", "专名", "错字", "校对", "同音", "ocr", "asr", "Teacher-to-Skills", "Skill")
 AUDIT_MODES = {"auto", "strict", "off"}
 
 

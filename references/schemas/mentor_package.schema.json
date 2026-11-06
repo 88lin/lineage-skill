@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lineage-skill.local/schemas/mentor-package-1.0.json",
-  "title": "Lineage MentorPackage 1.0",
+  "$id": "https://teacher-to-skills.local/schemas/mentor-package-1.0.json",
+  "title": "Teacher-to-Skills MentorPackage 1.0",
   "type": "object",
   "required": ["schema_version", "manifest", "learning_contract_template", "capability_graph_ref", "teacher_model_ref", "practice_bank_ref", "assessment_bank_ref", "mentor_protocol_ref", "micro_lesson_protocol_ref", "graduation_policy_ref", "learner_state_schema_ref", "episode_schema_ref", "personal_skill_schema_ref", "quality"],
   "properties": {

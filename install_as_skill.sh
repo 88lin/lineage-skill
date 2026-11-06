@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##############################################################################
-# lineage-skill -- Claude Code / Codex / OpenClaw Skill installer
+# teacher-to-skills -- Claude Code / Codex / OpenClaw Skill installer
 #
 # Copies this repository into the target agent skill directory and installs
 # Python dependencies needed by the local course-processing scripts.
@@ -74,13 +74,13 @@ resolve_install_target() {
 resolve_skill_dir() {
     case "$1" in
         claude)
-            echo "$HOME/.claude/skills/lineage-skill"
+            echo "$HOME/.claude/skills/teacher-to-skills"
             ;;
         codex)
-            echo "${CODEX_HOME:-$HOME/.codex}/skills/lineage-skill"
+            echo "${CODEX_HOME:-$HOME/.codex}/skills/teacher-to-skills"
             ;;
         openclaw)
-            echo "$HOME/skills/lineage-skill"
+            echo "$HOME/skills/teacher-to-skills"
             ;;
     esac
 }
@@ -102,7 +102,7 @@ resolve_agent_label() {
 main() {
     parse_args "$@"
 
-    print_header "lineage-skill -- install"
+    print_header "teacher-to-skills -- install"
 
     INSTALL_TARGET="$(resolve_install_target)"
     SKILL_DIR="$(resolve_skill_dir "$INSTALL_TARGET")"
@@ -120,10 +120,21 @@ main() {
             exit 0
         fi
         if [ -f "$SKILL_DIR/.env" ]; then
-            cp "$SKILL_DIR/.env" "/tmp/lineage-skill.env.bak"
-            print_info "Backed up existing .env to /tmp/lineage-skill.env.bak"
+            cp "$SKILL_DIR/.env" "/tmp/teacher-to-skills.env.bak"
+            print_info "Backed up existing .env to /tmp/teacher-to-skills.env.bak"
         fi
         rm -rf "$SKILL_DIR"
+    fi
+
+    # This project used to be called lineage-skill; carry its settings over.
+    LEGACY_DIR="$(dirname "$SKILL_DIR")/lineage-skill"
+    if [ -d "$LEGACY_DIR" ]; then
+        print_warning "Found an older install: $LEGACY_DIR"
+        if [ -f "$LEGACY_DIR/.env" ] && [ ! -f "/tmp/teacher-to-skills.env.bak" ]; then
+            cp "$LEGACY_DIR/.env" "/tmp/teacher-to-skills.env.bak"
+            print_info "Copied its .env into the new install (LINEAGE_* keys still work)"
+        fi
+        print_info "You can remove the old directory after checking the new one works: rm -rf \"$LEGACY_DIR\""
     fi
 
     print_info "Creating skill directory..."
@@ -159,8 +170,8 @@ main() {
 
     print_success "Files copied"
 
-    if [ -f "/tmp/lineage-skill.env.bak" ]; then
-        mv "/tmp/lineage-skill.env.bak" "$SKILL_DIR/.env"
+    if [ -f "/tmp/teacher-to-skills.env.bak" ]; then
+        mv "/tmp/teacher-to-skills.env.bak" "$SKILL_DIR/.env"
         print_success "Restored existing .env"
     fi
 
@@ -188,7 +199,7 @@ main() {
     print_success "Installed to $SKILL_DIR"
     echo ""
     print_info "Restart $AGENT_LABEL so it can load the skill."
-    print_info "Then say: 'Use lineage-skill to turn my course videos and PDFs into a course expert skill.'"
+    print_info "Then say: 'Use teacher-to-skills to turn my course videos and PDFs into a course expert skill.'"
     echo ""
 }
 

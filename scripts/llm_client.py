@@ -16,6 +16,11 @@ import requests
 
 load_dotenv()
 
+# Older installs (named lineage-skill) used LINEAGE_* variables; keep them working.
+for _key, _value in list(os.environ.items()):
+    if _key.startswith("LINEAGE_"):
+        os.environ.setdefault("TEACHER_TO_SKILLS_" + _key[len("LINEAGE_"):], _value)
+
 
 def _model_list(raw: str | None, default: str) -> list[str]:
     models = [m.strip() for m in (raw or "").split(",") if m.strip()]
@@ -58,14 +63,14 @@ def _parse_video_response(text: str, video_path: str) -> dict[str, Any]:
 
 def call_text_llm(messages: list[dict[str, Any]]) -> str:
     """Call the Stage 3 distillation model."""
-    api_key = os.getenv("LINEAGE_TEXT_API_KEY")
-    base_url = os.getenv("LINEAGE_TEXT_BASE_URL") or None
-    models = _model_list(os.getenv("LINEAGE_TEXT_MODEL"), "gpt-4o")
-    max_tokens = int(os.getenv("LINEAGE_TEXT_MAX_TOKENS", "4096"))
-    timeout = _timeout("LINEAGE_TEXT_TIMEOUT", "300")
+    api_key = os.getenv("TEACHER_TO_SKILLS_TEXT_API_KEY")
+    base_url = os.getenv("TEACHER_TO_SKILLS_TEXT_BASE_URL") or None
+    models = _model_list(os.getenv("TEACHER_TO_SKILLS_TEXT_MODEL"), "gpt-4o")
+    max_tokens = int(os.getenv("TEACHER_TO_SKILLS_TEXT_MAX_TOKENS", "4096"))
+    timeout = _timeout("TEACHER_TO_SKILLS_TEXT_TIMEOUT", "300")
 
     if not api_key:
-        raise ValueError("未设置 LINEAGE_TEXT_API_KEY")
+        raise ValueError("未设置 TEACHER_TO_SKILLS_TEXT_API_KEY")
 
     if base_url:
         url = base_url.rstrip("/") + "/chat/completions"
@@ -100,13 +105,13 @@ def call_text_llm(messages: list[dict[str, Any]]) -> str:
 
 def analyze_video_with_vision_model(video_path: str, prompt: str) -> dict[str, Any]:
     """Analyze a video with the configured OpenAI-compatible vision endpoint."""
-    api_key = os.getenv("LINEAGE_VISION_API_KEY")
-    base_url = os.getenv("LINEAGE_VISION_BASE_URL") or None
-    models = _model_list(os.getenv("LINEAGE_VISION_MODEL"), "gpt-4o")
-    timeout = _timeout("LINEAGE_VISION_TIMEOUT", "600")
+    api_key = os.getenv("TEACHER_TO_SKILLS_VISION_API_KEY")
+    base_url = os.getenv("TEACHER_TO_SKILLS_VISION_BASE_URL") or None
+    models = _model_list(os.getenv("TEACHER_TO_SKILLS_VISION_MODEL"), "gpt-4o")
+    timeout = _timeout("TEACHER_TO_SKILLS_VISION_TIMEOUT", "600")
 
     if not api_key:
-        raise ValueError("未设置 LINEAGE_VISION_API_KEY")
+        raise ValueError("未设置 TEACHER_TO_SKILLS_VISION_API_KEY")
     if not Path(video_path).exists():
         raise FileNotFoundError(video_path)
 
@@ -153,13 +158,13 @@ def analyze_video_with_vision_model(video_path: str, prompt: str) -> dict[str, A
 
 def analyze_images_with_vision_model(image_paths: list[str], prompt: str) -> dict[str, Any]:
     """Analyze one or more images with the configured OpenAI-compatible vision endpoint."""
-    api_key = os.getenv("LINEAGE_VISION_API_KEY")
-    base_url = os.getenv("LINEAGE_VISION_BASE_URL") or None
-    models = _model_list(os.getenv("LINEAGE_VISION_MODEL"), "gpt-4o")
-    timeout = _timeout("LINEAGE_VISION_TIMEOUT", "600")
+    api_key = os.getenv("TEACHER_TO_SKILLS_VISION_API_KEY")
+    base_url = os.getenv("TEACHER_TO_SKILLS_VISION_BASE_URL") or None
+    models = _model_list(os.getenv("TEACHER_TO_SKILLS_VISION_MODEL"), "gpt-4o")
+    timeout = _timeout("TEACHER_TO_SKILLS_VISION_TIMEOUT", "600")
 
     if not api_key:
-        raise ValueError("未设置 LINEAGE_VISION_API_KEY")
+        raise ValueError("未设置 TEACHER_TO_SKILLS_VISION_API_KEY")
     if not image_paths:
         raise ValueError("image_paths 不能为空")
 

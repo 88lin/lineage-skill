@@ -41,7 +41,7 @@ def write_json(path: str | Path, payload: Any) -> None:
 
 
 def validate_schema(instance: Any, schema: dict[str, Any], path: str = "$") -> list[ValidationIssue]:
-    """Validate the JSON-Schema subset used by bundled Lineage contracts."""
+    """Validate the JSON-Schema subset used by bundled Teacher-to-Skills contracts."""
     issues: list[ValidationIssue] = []
     expected = schema.get("type")
     if isinstance(expected, list):

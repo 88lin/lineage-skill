@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.0 — 2026-11-06
+
+### Changed
+
+- The project is renamed from Lineage Skill (`lineage-skill`) to Teacher-to-Skills (`teacher-to-skills`). The repository, Skill name, install directory, and docs now use the new name.
+- Environment variables are now `TEACHER_TO_SKILLS_*`. Existing `LINEAGE_*` variables still work as a fallback.
+- The course workspace moves from `.lineage/courses` to `.teacher-to-skills/courses`; generated files are now `teacher_to_skills_manifest.json` and `teacher_to_skills_progress.json`.
+- Generated course Skills are named `<course>-<role>-skill` instead of `<course>-<role>-lineage`.
+- `validate_lineage_package.py` is now `validate_teacher_to_skills_package.py`.
+- The installer detects an older `lineage-skill` install and carries over its `.env`.
+
+### Removed
+
+- The demo GIFs, which still showed the old name, along with their README sections.
+
 ## 1.0.0 — 2026-07-21
 
 ### Added

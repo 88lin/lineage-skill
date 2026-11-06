@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lineage-skill.local/schemas/assessment-bank-1.0.json",
-  "title": "Lineage AssessmentBank 1.0",
+  "$id": "https://teacher-to-skills.local/schemas/assessment-bank-1.0.json",
+  "title": "Teacher-to-Skills AssessmentBank 1.0",
   "type": "object",
   "required": ["schema_version", "course_package_id", "items", "graduation_matrix", "quality"],
   "properties": {

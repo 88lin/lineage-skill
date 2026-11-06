@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Resolve a complete provenance chain for Lineage source and runtime IDs."""
+"""Resolve a complete provenance chain for Teacher-to-Skills source and runtime IDs."""
 
 from __future__ import annotations
 
@@ -74,7 +74,7 @@ def evidence_ids(row: dict[str, Any]) -> list[str]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Fetch Lineage evidence by source or runtime ID.")
+    parser = argparse.ArgumentParser(description="Fetch Teacher-to-Skills evidence by source or runtime ID.")
     parser.add_argument("--references-dir", default="../references")
     parser.add_argument("--chunk-id")
     parser.add_argument("--card-id")

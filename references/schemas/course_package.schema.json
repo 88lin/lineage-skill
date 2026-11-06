@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lineage-skill.local/schemas/course-package-1.0.json",
-  "title": "Lineage CoursePackage 1.0",
+  "$id": "https://teacher-to-skills.local/schemas/course-package-1.0.json",
+  "title": "Teacher-to-Skills CoursePackage 1.0",
   "type": "object",
   "required": ["schema_version", "manifest", "sources", "lessons", "claims", "concepts", "methods", "evidence", "quality"],
   "properties": {

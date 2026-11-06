@@ -13,6 +13,11 @@ from typing import Any
 
 from text_sources import stable_id, write_jsonl, write_text_source_artifacts
 
+# Older installs (named lineage-skill) used LINEAGE_* variables; keep them working.
+for _key, _value in list(os.environ.items()):
+    if _key.startswith("LINEAGE_"):
+        os.environ.setdefault("TEACHER_TO_SKILLS_" + _key[len("LINEAGE_"):], _value)
+
 
 CARD_PREFIXES = {
     "concept": ["概念", "关键概念", "术语", "定义", "concept", "term"],
@@ -150,7 +155,7 @@ def build_local_cards(chunk: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def build_llm_cards(chunk: dict[str, Any]) -> list[dict[str, Any]]:
-    if not llm_enabled() or not os.getenv("LINEAGE_TEXT_API_KEY"):
+    if not llm_enabled() or not os.getenv("TEACHER_TO_SKILLS_TEXT_API_KEY"):
         return []
     from llm_client import call_text_llm
 
@@ -361,7 +366,7 @@ def distill_text_course(
     llm_failures = 0
     for chunk in chunks:
         chunk_cards: list[dict[str, Any]] = []
-        if llm_requested and os.getenv("LINEAGE_TEXT_API_KEY"):
+        if llm_requested and os.getenv("TEACHER_TO_SKILLS_TEXT_API_KEY"):
             try:
                 chunk_cards = build_llm_cards(chunk)
             except Exception:
@@ -382,7 +387,7 @@ def distill_text_course(
         sources=source_result["source_count"],
         chunks=chunks,
         cards=cards,
-        llm_used=llm_requested and bool(os.getenv("LINEAGE_TEXT_API_KEY")) and llm_failures == 0,
+        llm_used=llm_requested and bool(os.getenv("TEACHER_TO_SKILLS_TEXT_API_KEY")) and llm_failures == 0,
         llm_failures=llm_failures,
     )
     (out / "text_distillation_quality.json").write_text(json.dumps(quality, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

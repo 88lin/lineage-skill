@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Progress records for Lineage course pipeline runs."""
+"""Progress records for Teacher-to-Skills course pipeline runs."""
 
 from __future__ import annotations
 
@@ -35,7 +35,7 @@ def now() -> str:
 
 
 def progress_path(course_dir: Path) -> Path:
-    return course_dir / "lineage_progress.json"
+    return course_dir / "teacher_to_skills_progress.json"
 
 
 def load_progress(course_dir: Path) -> dict[str, Any]:

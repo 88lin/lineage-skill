@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic identifiers and content hashes for Lineage packages."""
+"""Deterministic identifiers and content hashes for Teacher-to-Skills packages."""
 
 from __future__ import annotations
 

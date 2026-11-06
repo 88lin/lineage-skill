@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lineage-skill.local/schemas/practice-episode-1.0.json",
+  "$id": "https://teacher-to-skills.local/schemas/practice-episode-1.0.json",
   "title": "Append-only PracticeEpisode 1.0",
   "type": "object",
   "required": ["schema_version", "episode_id", "mentor_package_id", "learner_id", "timestamp_start", "stage", "task_id", "capability_ids", "context", "prediction", "attempts", "hints", "feedback", "outcome", "errors", "mastery_events", "next_actions", "provenance"],

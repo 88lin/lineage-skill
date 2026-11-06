@@ -65,7 +65,7 @@ def build_mentor_package(source_dir: Path, *, requested_mode: str = "full", evid
             "course_package_id": package["manifest"]["package_id"],
             "teacher_model_id": teacher["teacher_id"],
             "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-            "generator_version": "lineage-skill-1.0",
+            "generator_version": "teacher-to-skills-1.0",
             "evidence_strategy": evidence_strategy,
             "apprenticeship_mode": actual_mode,
             "requested_apprenticeship_mode": requested_mode,

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lineage-skill.local/schemas/teacher-model-1.0.json",
-  "title": "Lineage TeacherModel 1.0",
+  "$id": "https://teacher-to-skills.local/schemas/teacher-model-1.0.json",
+  "title": "Teacher-to-Skills TeacherModel 1.0",
   "type": "object",
   "required": ["schema_version", "teacher_id", "course_ids", "identity", "epistemic_model", "practice_model", "boundaries", "evidence_index", "quality"],
   "properties": {

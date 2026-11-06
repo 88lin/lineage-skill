@@ -1,4 +1,4 @@
-Lineage Skill 1.0 compiler flow
+Teacher-to-Skills 1.0 compiler flow
 ================================
 
 Sources
@@ -53,6 +53,6 @@ DISTILL_USE_LLM=0 python scripts/run_course_pipeline.py \
 Validation
 ==========
 
-python scripts/validate_lineage_package.py --package <course_package.json>
+python scripts/validate_teacher_to_skills_package.py --package <course_package.json>
 python scripts/validate_mentor_package.py --package <mentor_package.json>
 python scripts/validate_generated_skill.py --skill-dir <generated-skill>

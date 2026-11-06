@@ -15,7 +15,7 @@ from stable_ids import stable_id
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_BASE_DIR = ROOT / ".lineage" / "courses"
+DEFAULT_BASE_DIR = ROOT / ".teacher-to-skills" / "courses"
 MERGED_LIST_FIELDS = ["sources", "lessons", "claims", *ASSET_FIELDS, "learning_checks", "evidence"]
 
 

@@ -1,4 +1,4 @@
-# Lineage Skill 1.0 Runtime Reference
+# Teacher-to-Skills 1.0 Runtime Reference
 
 Use this reference for provider setup, compiler stages, contracts, recovery, compatibility, generated layouts, and validation. Read the focused references for Mentor behavior, provenance, mastery, graduation, and external learner-state exchange.
 
@@ -44,7 +44,7 @@ validate_skill
 catalog
 ```
 
-Each stage writes compiler status to `lineage_progress.json`. `pipeline_progress_strategy` refers only to compilation; it never represents learner mastery.
+Each stage writes compiler status to `teacher_to_skills_progress.json`. `pipeline_progress_strategy` refers only to compilation; it never represents learner mastery.
 
 | Stage | Inputs | Outputs | Reuse / failure behavior |
 | --- | --- | --- | --- |
@@ -69,7 +69,7 @@ Each stage writes compiler status to `lineage_progress.json`. `pipeline_progress
 ## Workspace and artifacts
 
 ```text
-.lineage/courses/{course-name}/
+.teacher-to-skills/courses/{course-name}/
 ├── transcripts/
 ├── analysis/
 │   └── screenshots/
@@ -96,7 +96,7 @@ Each stage writes compiler status to `lineage_progress.json`. `pipeline_progress
 ├── graduation_policy.json
 ├── mentor_readiness_audit.json
 ├── mentor_readiness_audit.md
-└── lineage_progress.json
+└── teacher_to_skills_progress.json
 ```
 
 Generated Skills default to `dist/{skill-name}/`.
@@ -108,16 +108,16 @@ AUDIO_TRANSCRIBE_API_KEY=
 AUDIO_TRANSCRIBE_BASE_URL=
 AUDIO_TRANSCRIBE_MODEL=
 
-LINEAGE_VISION_API_KEY=
-LINEAGE_VISION_BASE_URL=
-LINEAGE_VISION_MODEL=
-LINEAGE_VISION_TIMEOUT=600
+TEACHER_TO_SKILLS_VISION_API_KEY=
+TEACHER_TO_SKILLS_VISION_BASE_URL=
+TEACHER_TO_SKILLS_VISION_MODEL=
+TEACHER_TO_SKILLS_VISION_TIMEOUT=600
 
-LINEAGE_TEXT_API_KEY=
-LINEAGE_TEXT_BASE_URL=
-LINEAGE_TEXT_MODEL=
-LINEAGE_TEXT_MAX_TOKENS=4096
-LINEAGE_TEXT_TIMEOUT=300
+TEACHER_TO_SKILLS_TEXT_API_KEY=
+TEACHER_TO_SKILLS_TEXT_BASE_URL=
+TEACHER_TO_SKILLS_TEXT_MODEL=
+TEACHER_TO_SKILLS_TEXT_MAX_TOKENS=4096
+TEACHER_TO_SKILLS_TEXT_TIMEOUT=300
 
 DISTILL_USE_LLM=1
 DISTILL_CHUNK_SIZE=6000
@@ -276,7 +276,7 @@ When a Skill changes, preserve its old manifest and an ID map so external learne
 ## Validation and failure strategy
 
 ```bash
-python scripts/validate_lineage_package.py --package <course_package.json>
+python scripts/validate_teacher_to_skills_package.py --package <course_package.json>
 python scripts/validate_mentor_package.py --package <mentor_package.json>
 python scripts/validate_generated_skill.py --skill-dir <generated-skill>
 python "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" .

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lineage-skill.local/schemas/personal-skill-candidate-1.0.json",
+  "$id": "https://teacher-to-skills.local/schemas/personal-skill-candidate-1.0.json",
   "title": "PersonalSkillCandidate 1.0",
   "type": "object",
   "required": ["schema_version", "candidate_id", "name", "purpose", "triggers", "preconditions", "procedure", "tools", "outputs", "evaluator", "failure_modes", "source_lineage", "personal_adaptations", "real_world_evidence", "regression_tests", "confidence", "promotion_status"],

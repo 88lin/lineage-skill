@@ -1,11 +1,11 @@
 ---
-name: lineage-skill
-description: Turn courses, books, video, audio, PDFs, slides, transcripts, OCR, notes, and long-form materials into source-grounded learning Skills that teach unseen concepts progressively with reliable terminal ASCII or SVG visuals, ask two end-of-lesson questions together by default, give focused feedback, schedule review, test transfer, and support independent work. Also use for CoursePackage migration, teacher-method extraction, learning paths, practice and assessment libraries, private learner-state workflows, reusable personal methods, and graduation evaluation.
+name: teacher-to-skills
+description: Distill a teacher or mentor into a coaching Skill. Turn their courses, books, video, audio, PDFs, slides, transcripts, OCR, notes, and long-form materials into source-grounded learning Skills that teach unseen concepts progressively with reliable terminal ASCII or SVG visuals, ask two end-of-lesson questions together by default, give focused feedback, schedule review, test transfer, and support independent work. Also use for CoursePackage migration, teacher-method extraction, learning paths, practice and assessment libraries, private learner-state workflows, reusable personal methods, and graduation evaluation.
 ---
 
-# Lineage Skill
+# Teacher-to-Skills
 
-Compile source material into a learning Skill that can cite the source, demonstrate the teacher's method, guide practice, correct mistakes, and gradually reduce the learner's dependence on help.
+Distill a teacher's source material into a mentor Skill that can cite the source, demonstrate the teacher's method, guide practice, correct mistakes, and gradually reduce the learner's dependence on help.
 
 Use this method:
 
@@ -58,8 +58,8 @@ Do not rerun expensive capture when stable artifacts already exist and inputs ha
 Separate capability from configuration. Report missing configuration and the smallest viable fallback.
 
 - Audio transcription: `AUDIO_TRANSCRIBE_API_KEY`, `AUDIO_TRANSCRIBE_BASE_URL`, `AUDIO_TRANSCRIBE_MODEL`.
-- Video/vision: `LINEAGE_VISION_API_KEY`, `LINEAGE_VISION_BASE_URL`, `LINEAGE_VISION_MODEL`.
-- Text distillation: `LINEAGE_TEXT_API_KEY`, `LINEAGE_TEXT_BASE_URL`, `LINEAGE_TEXT_MODEL` when LLM distillation is enabled.
+- Video/vision: `TEACHER_TO_SKILLS_VISION_API_KEY`, `TEACHER_TO_SKILLS_VISION_BASE_URL`, `TEACHER_TO_SKILLS_VISION_MODEL`.
+- Text distillation: `TEACHER_TO_SKILLS_TEXT_API_KEY`, `TEACHER_TO_SKILLS_TEXT_BASE_URL`, `TEACHER_TO_SKILLS_TEXT_MODEL` when LLM distillation is enabled.
 - PDF/OCR submission: `MINERU_API_TOKEN`, unless existing OCR is reused.
 - Local media: `ffmpeg` and `ffprobe`.
 
@@ -217,7 +217,7 @@ Graduate only with delayed retention, unseen-case diagnosis, independent product
 Run:
 
 ```bash
-python scripts/validate_lineage_package.py --package <course_package.json>
+python scripts/validate_teacher_to_skills_package.py --package <course_package.json>
 python scripts/validate_mentor_package.py --package <mentor_package.json>
 python scripts/validate_generated_skill.py --skill-dir <generated-skill>
 python "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" .

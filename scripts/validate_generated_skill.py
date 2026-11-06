@@ -16,7 +16,7 @@ from validate_mentor_package import validate_mentor
 REQUIRED = [
     "SKILL.md",
     "agents/openai.yaml",
-    "lineage_manifest.json",
+    "teacher_to_skills_manifest.json",
     "references/course_package.json",
     "scripts/search_course_notes.py",
     "scripts/fetch_course_evidence.py",
@@ -50,7 +50,7 @@ PLACEHOLDERS = [re.compile(pattern, re.I) for pattern in [r"\bTODO\b", r"add .+ 
 
 def validate_skill(skill_dir: Path) -> dict:
     issues: list[ValidationIssue] = []
-    manifest = load_json(skill_dir / "lineage_manifest.json") if (skill_dir / "lineage_manifest.json").exists() else {}
+    manifest = load_json(skill_dir / "teacher_to_skills_manifest.json") if (skill_dir / "teacher_to_skills_manifest.json").exists() else {}
     required = REQUIRED + (MENTOR_REQUIRED if "mentor" in manifest.get("roles", []) else [])
     for relative in required:
         path = skill_dir / relative
@@ -99,10 +99,10 @@ def validate_skill(skill_dir: Path) -> dict:
     if mentor_path.exists():
         mentor_result = validate_mentor(mentor_path)
         issues.extend(ValidationIssue(f"mentor:{item['path']}", item["message"], item["severity"]) for item in mentor_result["issues"])
-    manifest_path = skill_dir / "lineage_manifest.json"
+    manifest_path = skill_dir / "teacher_to_skills_manifest.json"
     if manifest_path.exists():
-        if manifest.get("generated_by", {}).get("id") != "lineage-skill":
-            issues.append(ValidationIssue("lineage_manifest.json", "generated_by.id must be lineage-skill"))
+        if manifest.get("generated_by", {}).get("id") != "teacher-to-skills":
+            issues.append(ValidationIssue("teacher_to_skills_manifest.json", "generated_by.id must be teacher-to-skills"))
         if "mentor" in manifest.get("roles", []):
             features = manifest.get("runtime_features", {})
             expected = {
@@ -114,15 +114,15 @@ def validate_skill(skill_dir: Path) -> dict:
             }
             for name, value in expected.items():
                 if features.get(name) != value:
-                    issues.append(ValidationIssue(f"lineage_manifest.json.runtime_features.{name}", f"expected {value!r}"))
+                    issues.append(ValidationIssue(f"teacher_to_skills_manifest.json.runtime_features.{name}", f"expected {value!r}"))
         for filename, expected_hash in manifest.get("package_hashes", {}).items():
             artifact = skill_dir / "references" / filename
             if not artifact.exists():
-                issues.append(ValidationIssue(f"lineage_manifest.json.package_hashes.{filename}", "hashed artifact is missing"))
+                issues.append(ValidationIssue(f"teacher_to_skills_manifest.json.package_hashes.{filename}", "hashed artifact is missing"))
                 continue
             actual_hash = content_hash(load_json(artifact))
             if actual_hash != expected_hash:
-                issues.append(ValidationIssue(f"lineage_manifest.json.package_hashes.{filename}", "package hash does not match packaged artifact"))
+                issues.append(ValidationIssue(f"teacher_to_skills_manifest.json.package_hashes.{filename}", "package hash does not match packaged artifact"))
     if mentor_path.exists():
         mentor = load_json(mentor_path)
         for filename, expected_hash in mentor.get("manifest", {}).get("package_hashes", {}).items():
@@ -139,7 +139,7 @@ def validate_skill(skill_dir: Path) -> dict:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Validate a generated Lineage Skill.")
+    parser = argparse.ArgumentParser(description="Validate a generated Teacher-to-Skills.")
     parser.add_argument("--skill-dir", required=True)
     args = parser.parse_args()
     result = validate_skill(Path(args.skill_dir).expanduser().resolve())

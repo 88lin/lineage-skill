@@ -3,7 +3,7 @@ Generated Mentor Skill 1.0
 
 <generated-skill>/
 ├── SKILL.md
-├── lineage_manifest.json
+├── teacher_to_skills_manifest.json
 ├── mentor_manifest.json
 ├── agents/
 │   ├── openai.yaml

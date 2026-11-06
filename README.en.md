@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="./docs/img/lineage-apprenticeship-hero.svg" alt="Lineage Skill: apprenticeship, not answer outsourcing" width="100%">
+<img src="./docs/img/teacher-to-skills-apprenticeship-hero.svg" alt="Teacher-to-Skills: distill your teacher into a Skill" width="100%">
 
-# Lineage Skill
+# Teacher-to-Skills
 
-**Turn courses, books, and handouts into a source-grounded learning Skill that helps you practice**
+**Distill your teacher into a Skill you can ask anytime and practice with**
 
-It does more than summarize. It teaches concepts through progressive micro-lessons and reliable terminal ASCII/SVG visuals, asks two end-of-lesson questions together, responds to each answer, and tests independent use in real situations.
+Give it a teacher's courses, books, recordings, handouts, and written feedback. It extracts how the teacher looks at a problem, makes judgments, and corrects mistakes,<br>then packages that into a source-backed AI mentor: it demonstrates, lets you try, gives feedback by the teacher's standards, and steps back until you no longer need it.
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-4C7BBE.svg)](./LICENSE)
 
@@ -14,142 +14,133 @@ It does more than summarize. It teaches concepts through progressive micro-lesso
 
 </div>
 
-## What it can do for you
+## Why distill a teacher instead of summarizing a course
 
-A normal course summary tells you what the teacher said. Lineage Skill focuses on whether you can actually do the work:
+What makes a good teacher valuable is rarely the conclusions on the slides. It is the part they never write down: where they look first, what their judgment rests on, where students usually go wrong, and when the method should not be used.
 
-1. Turn videos, audio, books, PDFs, handouts, and notes into a reusable learning Skill.
-2. Keep a source trail for important claims so you can return to the original passage, quote, or key visual.
-3. Organize what the teacher notices, how decisions are made, when a method applies, and how results are checked.
-4. Arrange practice in a sensible order instead of doing the decisive work for you.
-5. Preserve your attempts, mistakes, revisions, and real-world results so you can gradually form your own method.
+A summary keeps what the teacher said. Teacher-to-Skills keeps what the teacher would do, then turns it into something you can do yourself.
 
-The goal is not permanent dependence on an AI tutor. It is independent performance on real problems without prompts or templates.
+<img src="./docs/img/teacher-to-skills-methodology-value-en.png" alt="From preserving evidence and structuring knowledge to packaging mentor capability, producing learning value and work value" width="100%">
 
-## The complete user journey
-
-You do not need to run project scripts or understand the internal file structure. The complete path is: install Lineage, give it your material, generate and enable a course Skill, and start learning.
-
-| Step | What you do | What Lineage does |
+| | Course summary | Distilled mentor Skill |
 | --- | --- | --- |
-| 1. Install Lineage | Send the [installation guide](./docs/install.md) to your AI assistant and let it install the Skill; restart when prompted | Checks the runtime requirements and completes the installation without asking you to run commands |
-| 2. Provide material | Upload files or point to the course folder, then describe what you ultimately want to be able to do | Inventories video, audio, documents, notes, and existing work so completed stages are not repeated |
-| 3. Confirm the goal | Say whether you mainly want source lookup, systematic learning, help with real problems, or practical checklists and templates | Explains whether the material is sufficient, what is missing, how deep the result can go, and how raw material will be protected |
-| 4. Let it build | Confirm that it should begin; you do not need to direct every stage | Handles transcription, recognition, source mapping, teacher-method extraction, practice design, and quality checks; interrupted work can resume |
-| 5. Review and enable | Read the delivery summary and confirm that no important material was missed | Delivers the course Skill, reports coverage, evidence gaps, coaching depth, and privacy handling, then enables it in the current assistant |
-| 6. Start the first lesson | Tell the new Skill your goal, current level, available time, and a real situation you care about | Runs a short baseline check, teaches one concept progressively with terminal ASCII or SVG when useful, then shows two questions together and evaluates each answer |
-| 7. Keep learning | Return with “continue from last time” or submit real work | Preserves attempts, mistakes, and revisions, schedules review, and gradually reduces support |
-| 8. Update or graduate | Add new material when it appears, or request an independent check when ready | Updates the course while preserving progress, then tests delayed recall and transfer before claiming mastery |
+| What it keeps | Topics and conclusions | The teacher's focus points, judgment rules, demonstrations, and corrections |
+| How you use it | You read it | It sets a task, you try first, it reviews by the teacher's standards |
+| Trust | Hard to tell quotes from paraphrase | Important claims trace back to the original passage, quote, or key visual |
+| Outcome | Done once you finish reading | You can do the work yourself, later and in new situations |
 
-### A simulated legal learning case in 18 seconds
+## What gets distilled from a teacher
 
-<img src="./docs/img/lineage-real-workflow-demo-en.gif" alt="A fictional contract-review course showing the full Lineage learning journey from source organization and method extraction through a first attempt, focused feedback, revision, and transfer" width="100%">
+| Distilled element | What it means |
+| --- | --- |
+| Sources | The original passage, quote, handout page, or video frame behind each important claim |
+| Focus points | What the teacher looks at first and pays closest attention to |
+| Judgment rules | The conditions a conclusion rests on, and how exceptions are handled |
+| Demonstrations | The teacher's complete worked approach and its key steps |
+| Common mistakes and corrections | Where students usually go wrong and how the teacher points it out |
+| Boundaries | When the method does not apply, or when a qualified professional is needed |
 
-Follow a simulated contract-review case to see how Lineage turns a course method into practice, feedback, revision, and independent use. The example is educational and is not legal advice.
+It **never** claims to clone a teacher's personality, consciousness, or complete experience. Anything the material does not support is marked as missing evidence, not filled in with "the teacher would probably say".
 
-### A complete first request
+## How the distilled mentor coaches you
 
-> Use Lineage Skill to inspect this course material and turn it into a course Skill that can help me genuinely learn. My goal is to apply the course method in real work. Keep important claims traceable to their sources, and keep raw material and personal learning records private. First tell me what material you found and what is missing. If there is no risky decision for me to make, continue through organization, validation, and enabling the new Skill, then tell me how to begin the first lesson.
+- **Baseline first**: learns your goal, current level, and a real situation you care about, then starts with the concept you need most.
+- **Clear explanations**: intuition first, then a precise definition, a visual, an example, a counterexample, and a three-point recap. Visuals use terminal-safe ASCII, with SVG for more complex relationships.
+- **You try first**: each concept ends with two questions shown together, one for understanding and one for application, each evaluated separately.
+- **Corrections by the teacher's standards**: each round targets the single most important problem, gives only the hint you need, and asks you to revise.
+- **Remembers your mistakes**: keeps your attempts, errors, and revisions, and schedules review around weak spots without repeating the original questions.
+- **Steps back over time**: templates and hints fade as you improve, ending with unseen situations and no hints.
+- **Knows when you have graduated**: mastery means you can still do it after a delay, apply it in a new context, and recognize its limits.
 
-You do not need to learn role names or configuration choices. Describe what you ultimately want to be able to do, and Lineage will choose the suitable approach.
+The goal is not permanent dependence on an AI mentor. It is to learn the teacher's method and, eventually, form your own.
 
-### What a complete delivery should include
+<img src="./docs/img/apprenticeship-lifecycle.svg" alt="The full path from starting a subject to independent use" width="100%">
 
-A complete handoff clearly states:
+<img src="./docs/img/micro-lesson-workflow.svg" alt="A micro-lesson moving from progressive explanation and ASCII or SVG visuals to two questions shown together and feedback on each answer" width="100%">
 
-- whether the new course Skill has been generated and is ready to use;
+## Get started in three steps
+
+You do not need to run scripts or understand the internal file structure. Just talk to your AI assistant in plain language.
+
+### 1. Install
+
+Send the [installation guide](./docs/install.md) to your AI assistant (Claude Code, Codex, OpenClaw, and others), let it install the Skill, and restart when prompted.
+
+### 2. Hand over the teacher's material and distill
+
+Upload files or point to the folder, then say:
+
+> Use Teacher-to-Skills to distill this teacher's material into a mentor Skill that can help me genuinely learn. My goal is to apply the teacher's method in real work. Keep important claims traceable to their sources, and keep raw material and personal learning records private. First tell me what material you found and what is missing. If there is no risky decision for me to make, continue through distillation, validation, and enabling the new Skill, then tell me how to begin the first lesson.
+
+It inventories the material, then handles transcription, recognition, source mapping, teacher-method extraction, practice design, and quality checks. Interrupted work can resume.
+
+The handoff should clearly state:
+
+- whether the mentor Skill has been generated and enabled;
 - which videos, documents, lessons, and notes were processed;
-- whether important claims can be traced back to sources;
-- which passages are weakly supported, unclear, or need human review;
-- whether the result supports full coaching, guided learning, or source lookup only;
-- where raw material and personal learning records are kept, and whether either entered the generated result;
-- how to enable the new Skill and begin the first lesson.
+- which passages are weakly supported, unclear, or need your review;
+- whether it supports full coaching, guided learning, or source lookup only;
+- where raw material and personal learning records are kept, and whether either was packaged into the Skill.
 
-If any of this is unclear, ask Lineage to complete the delivery check before starting the course.
+If any of this is unclear, ask it to complete the delivery check.
 
-### How to begin learning
+### 3. Learn with your mentor
 
-> Start teaching me with the course Skill you just created. First ask about my goal, current level, weekly time, and one real application. After a short baseline check, teach one concept progressively and use terminal ASCII or SVG when it clarifies the idea; do not output Mermaid source. Then show both questions together, wait for my answers, and evaluate them separately.
+> Start teaching me with the mentor Skill you just created. First ask about my goal, current level, weekly time, and one real application. After a short baseline check, teach one concept progressively. Then show both questions together, wait for my answers, and evaluate them separately.
 
-On later visits, you do not need to repeat the full background. These short requests are enough:
+On later visits, one line is enough:
 
 | What you want | What to say |
 | --- | --- |
 | Continue learning | “Continue from last time and give me the single most useful exercise for today.” |
-| Check the source | “Find the teacher's original position and source on this question. Do not start an exercise this time.” |
-| Submit real work | “Here is work I produced with the course method. Evaluate it against the course criteria, then identify the single most important problem.” |
+| Ask how the teacher sees it | “Using the teacher's method, what should I look at first here? Cite the source. No exercise this time.” |
+| Submit real work | “Here is work I produced with the teacher's method. Evaluate it by the teacher's standards, then name the single most important problem.” |
 | Review | “Use my previous mistakes to schedule a review, but do not repeat the original question.” |
-| Test transfer | “Use a situation I have not seen before to check whether I can apply the method independently.” |
-| Solve a real problem | “Let me explain my judgment and plan first, then use the course method to correct the most important gap.” |
-| Add new material | “Update the course Skill with these new lessons while preserving my existing learning progress.” |
-| Prepare for an independent check | “Give me no hints. Test me in a new situation and explain what evidence of mastery is still missing.” |
+| Test transfer | “Use a situation I have not seen before to check whether I can apply the method on my own.” |
+| Solve a real problem | “Let me explain my judgment and plan first, then use the teacher's method to correct the biggest gap.” |
+| Add new material | “Here is the teacher's new lesson. Update the mentor Skill and keep my learning progress.” |
+| Ask to graduate | “Give me no hints. Test me in a new situation and explain what evidence of mastery is still missing.” |
 
-Lineage chooses the smallest suitable workflow for the material you already have. It reuses existing transcripts and notes, and can transcribe or recognize video, audio, and scanned documents when the required services are available. If something essential is unavailable, it explains what is missing and what can still be completed.
+## What material can be distilled
 
-## Supported materials
-
-| What you have | What Lineage does |
+| What you have | What it does |
 | --- | --- |
-| Course videos | Combines speech, slides, whiteboards, demonstrations, and other visual teaching evidence |
-| Recordings or podcasts | Produces searchable text organized by lesson and topic |
-| PDFs, scanned handouts, and ebooks | Recognizes the body text, structure, tables, and important pages |
-| Markdown, text files, chapters, and notes | Keeps source locations while extracting methods, cases, and practice |
-| Existing transcripts or course notes | Reuses completed work instead of processing the same material again |
-| Multiple courses or teachers | Preserves each position, condition, and disagreement instead of forcing one answer |
+| Course videos and recorded lectures | Combines speech, slides, whiteboards, and demonstrations |
+| Recordings, podcasts, and interviews | Produces searchable text organized by lesson and topic |
+| Books, PDFs, and scanned handouts | Recognizes body text, structure, tables, and important pages |
+| Articles, notes, written feedback, and transcripts | Keeps source locations while extracting methods, cases, and practice |
+| Existing transcripts or course notes | Reuses completed work instead of processing it again |
+| Material from several teachers | Keeps each teacher's position, conditions, and disagreements instead of forcing one answer |
 
-The material does not have to be perfect. Lineage identifies missing evidence, uncertain passages, and items that need human review rather than presenting guesses as the teacher's original view.
+Incomplete material is fine. It flags missing evidence and items that need human review. When the material supports explanation but not reliable practice, the Skill falls back to source lookup or guided learning instead of pretending to be a complete mentor.
 
-## From understanding to independent ability
+## How it works
 
-<img src="./docs/img/lineage-system-architecture.svg" alt="Four stages from course sources to personal ability" width="100%">
+<img src="./docs/img/teacher-to-skills-system-architecture.svg" alt="Four layers from a teacher's material to your own ability" width="100%">
 
-| Stage | What you gain |
+| Layer | What it does |
 | --- | --- |
-| Traceable sources | Important claims link back to the original passage, quote, handout, or key visual |
-| The teacher's working method | Learn what to notice, how to judge, when a method applies, and when it does not |
-| Ability through practice | Move from imitation and correction to independent work across different situations |
-| A personal method | Turn real attempts, failures, and outcomes into reusable personal experience |
+| Evidence | Keeps original passages, quotes, handouts, and key visuals so every claim can be traced |
+| Mentor | Extracts the teacher's focus points, judgment rules, demonstrations, corrections, and boundaries |
+| Practice | Builds ordered exercises, rubrics, review, and transfer checks |
+| Personal | Keeps your attempts and real results, and with your approval turns them into your own method |
 
-<img src="./docs/img/apprenticeship-lifecycle.svg" alt="The full path from starting a subject to independent use" width="100%">
+The teacher's material and your learning records are stored separately. The teacher's part is fixed once generated; your progress lives in a private directory outside the Skill, so re-distilling or adding material never erases it.
 
-A typical journey is: clarify the goal, study a demonstration, imitate, receive correction, work independently, transfer the method to a changed situation, pass a final check, and continue with long-term review.
+## Boundaries, privacy, and copyright
 
-<img src="./docs/img/micro-lesson-workflow.svg" alt="A micro-lesson moving from progressive explanation and ASCII or SVG visuals to two questions shown together and feedback on each answer" width="100%">
+- Only source-backed methods and judgments are distilled, never a teacher's personality, consciousness, or complete experience.
+- The teacher's own words, source-grounded synthesis, AI inference, and your practice evidence stay clearly separated.
+- Raw courses, transcripts, screenshots, scans, and personal learning records are not packaged into generated Skills by default.
+- A practice-tested approach is proposed as your long-term personal method only with your explicit approval.
+- Medical, legal, financial, investment, and other high-risk material is for source-backed learning only and does not replace professional qualification or responsibility.
+- Only distill material you are authorized to use, and respect its copyright and distribution limits.
 
-## How it coaches
+## Acknowledgements
 
-- Source questions are answered directly with evidence and are not counted as proof of mastery.
-- New concepts move from intuition to precise definition, visual model, example, counterexample, and a three-point recap.
-- Visuals default to terminal-safe ASCII, with real SVG files for more complex relationships; raw Mermaid is not emitted when rendering is uncertain.
-- Each concept uses two formative questions: understanding first and application second. Both are shown together, then evaluated separately.
-- Baseline checks, retrieval, transfer, and independent assessment remain attempt-first so answers are not leaked.
-- Each round of feedback focuses on the most important current problem and gives only the hint needed for revision.
-- Your first attempt, revision, and reason for changing are preserved.
-- Delayed review, parallel tasks, and changed constraints test whether the ability lasts and transfers.
-- Templates and hints gradually fade as you improve.
-- Mastery requires unaided work, success after a delay, performance in a new context, and recognition of boundaries.
-
-## What you receive
-
-- A course-backed Skill for ongoing conversation and learning.
-- A traceable organization of the course knowledge and working methods.
-- A sensible learning path with practical exercises.
-- Feedback on concrete attempts, revision guidance, and review suggestions.
-- Clear statements about material completeness, evidence strength, and capability boundaries.
-- A personal method proposal only after enough practice, and only with your approval.
-
-When the material is rich enough, Lineage can support full coaching. When it supports explanation but not reliable practice or assessment, the Skill clearly falls back to source lookup or guided learning instead of pretending to be a complete mentor.
-
-## Privacy, provenance, and boundaries
-
-- Raw courses, transcripts, screenshots, scanned content, and personal learning records are not published by default.
-- Attempts, mistakes, review plans, and real-world results stay separate from the course Skill; regenerating the Skill does not delete them.
-- A repeatedly tested method is proposed as a durable personal method only after your explicit approval.
-- Teacher source, source-grounded synthesis, AI inference, and your real-world evidence remain visibly distinct.
-- Disagreements between teachers retain their own sources and conditions instead of being turned into false consensus.
-- Lineage never claims to clone a teacher's personality, consciousness, or complete experience.
-- Medical, legal, financial, investment, and other high-risk material remains educational and source-bounded. It does not replace professional qualification or responsibility.
-- Use only material you are authorized to process and respect its copyright and distribution limits.
+- [Datawhale](https://github.com/datawhalechina) — AI education, open courses, and learner community practice.
+- [rfeng1016](https://github.com/rfeng1016) — suggestions on progressive knowledge organization.
+- [LINUX DO](https://linux.do/) — discussion and feedback from the Chinese developer community.
 
 ## License
 

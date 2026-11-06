@@ -24,7 +24,7 @@ from llm_client import analyze_images_with_vision_model
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_BASE_DIR = ROOT / ".lineage" / "courses"
+DEFAULT_BASE_DIR = ROOT / ".teacher-to-skills" / "courses"
 FFMPEG = os.getenv("FFMPEG") or shutil.which("ffmpeg") or "ffmpeg"
 FFPROBE = os.getenv("FFPROBE") or shutil.which("ffprobe") or "ffprobe"
 

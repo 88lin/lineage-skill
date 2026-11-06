@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lineage-skill.local/schemas/mastery-state-1.0.json",
+  "$id": "https://teacher-to-skills.local/schemas/mastery-state-1.0.json",
   "title": "Derived MasteryState 1.0",
   "type": "object",
   "required": ["schema_version", "mentor_package_id", "learner_id", "rebuilt_at", "capabilities"],
