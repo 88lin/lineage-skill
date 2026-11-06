@@ -1,4 +1,4 @@
 interface:
   display_name: "Teacher-to-Skills"
   short_description: "Distill your teacher into a Skill that coaches you."
-  default_prompt: "Use $teacher-to-skills to distill my teacher's courses, books, or recordings into a source-backed mentor Skill that teaches progressively with terminal ASCII or SVG, asks two questions together, gives focused feedback on each, and helps me work independently."
+  default_prompt: "Use $teacher-to-skills to distill my teacher's courses, books, or recordings into a source-backed teacher Skill that teaches progressively with terminal ASCII or SVG, asks two questions together, gives focused feedback on each, and helps me work independently."

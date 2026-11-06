@@ -1,6 +1,6 @@
 ---
 name: teacher-to-skills
-description: Distill a teacher or mentor into a coaching Skill. Turn their courses, books, video, audio, PDFs, slides, transcripts, OCR, notes, and long-form materials into source-grounded learning Skills that teach unseen concepts progressively with reliable terminal ASCII or SVG visuals, ask two end-of-lesson questions together by default, give focused feedback, schedule review, test transfer, and support independent work. Also use for CoursePackage migration, teacher-method extraction, learning paths, practice and assessment libraries, private learner-state workflows, reusable personal methods, and graduation evaluation.
+description: Distill a teacher into a coaching Skill. Turn their courses, books, video, audio, PDFs, slides, transcripts, OCR, notes, and long-form materials into source-grounded learning Skills that teach unseen concepts progressively with reliable terminal ASCII or SVG visuals, ask two end-of-lesson questions together by default, give focused feedback, schedule review, test transfer, and support independent work. Also use for CoursePackage migration, teacher-method extraction, learning paths, practice and assessment libraries, private learner-state workflows, reusable personal methods, and graduation evaluation.
 ---
 
 # Teacher-to-Skills

@@ -4,7 +4,7 @@
 
 ## 项目一句话介绍
 
-`teacher-to-skills` 能把你的导师蒸馏成一个 Skill。交给它老师的课程、书籍、视频、音频、PDF、讲义和笔记，它会生成一位会带你学习的 AI 导师：能引用原文、示范老师的方法、先让你动手尝试、按明确标准纠错，并逐步检查你能否在真实场景中独立使用。个人练习记录默认保存在 Skill 外部的私有目录。
+`teacher-to-skills` 能把你的老师蒸馏成一个 Skill。交给它老师的课程、书籍、视频、音频、PDF、讲义和笔记，它会生成一位会带你学习的 AI 老师：能引用原文、示范老师的方法、先让你动手尝试、按明确标准纠错，并逐步检查你能否在真实场景中独立使用。个人练习记录默认保存在 Skill 外部的私有目录。
 
 仓库：https://github.com/JuneYaooo/teacher-to-skills
 
@@ -81,20 +81,20 @@ MINERU_API_TOKEN=
 
 安装完成后告诉用户：
 
-> 已安装完成。请重启当前 Agent，让它重新加载 Skills。重启后可以直接说：“用 Teacher-to-Skills 把这位老师的材料蒸馏成一个能回查出处、会带我练习的导师 Skill。原始材料和个人学习记录保持私有；完成后启用新 Skill，并告诉我怎样开始第一课。”
+> 已安装完成。请重启当前 Agent，让它重新加载 Skills。重启后可以直接说：“用 Teacher-to-Skills 把这位老师的材料蒸馏成一个能回查出处、会带我练习的老师 Skill。原始材料和个人学习记录保持私有；完成后启用新 Skill，并告诉我怎样开始第一课。”
 
 ## 冒烟测试
 
 重启 Agent 后，让用户用自然语言测试：
 
 ```text
-用 teacher-to-skills 检查一下我现在有哪些老师的材料可以蒸馏成导师 Skill。
+用 teacher-to-skills 检查一下我现在有哪些老师的材料可以蒸馏成老师 Skill。
 ```
 
 如果用户已经有课程材料：
 
 ```text
-用 teacher-to-skills 把这个目录里老师的材料蒸馏成一个既能回查出处、又能带我练习和解决真实问题的导师 Skill。原始材料和个人学习记录保持私有；完成后启用新 Skill，并告诉我怎样开始第一课。
+用 teacher-to-skills 把这个目录里老师的材料蒸馏成一个既能回查出处、又能带我练习和解决真实问题的老师 Skill。原始材料和个人学习记录保持私有；完成后启用新 Skill，并告诉我怎样开始第一课。
 ```
 
 ## 完成标志
@@ -105,4 +105,4 @@ MINERU_API_TOKEN=
 2. `scripts/` 和 `requirements.txt` 已复制到安装目录
 3. 依赖安装完成
 4. Agent 重启后，用户自然语言请求整理课程时能触发 `teacher-to-skills`
-5. 根 Skill 通过 quick validator，生成 Mentor Skill 能通过 `scripts/validate_generated_skill.py`
+5. 根 Skill 通过 quick validator，生成的 Teacher Skill 能通过 `scripts/validate_generated_skill.py`

@@ -6,7 +6,7 @@
 
 **Distill your teacher into a Skill you can ask anytime and practice with**
 
-Give it a teacher's courses, books, recordings, handouts, and written feedback. It extracts how the teacher looks at a problem, makes judgments, and corrects mistakes,<br>then packages that into a source-backed AI mentor: it demonstrates, lets you try, gives feedback by the teacher's standards, and steps back until you no longer need it.
+Give it a teacher's courses, books, recordings, handouts, and written feedback. It extracts how the teacher looks at a problem, makes judgments, and corrects mistakes,<br>then packages that into a source-backed AI teacher: it demonstrates, lets you try, gives feedback by the teacher's standards, and steps back until you no longer need it.
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-4C7BBE.svg)](./LICENSE)
 
@@ -20,9 +20,9 @@ What makes a good teacher valuable is rarely the conclusions on the slides. It i
 
 A summary keeps what the teacher said. Teacher-to-Skills keeps what the teacher would do, then turns it into something you can do yourself.
 
-<img src="./docs/img/teacher-to-skills-methodology-value-en.png" alt="From preserving evidence and structuring knowledge to packaging mentor capability, producing learning value and work value" width="100%">
+<img src="./docs/img/teacher-to-skills-methodology-value-en.png" alt="From preserving evidence and structuring knowledge to packaging teacher capability, producing learning value and work value" width="100%">
 
-| | Course summary | Distilled mentor Skill |
+| | Course summary | Distilled teacher Skill |
 | --- | --- | --- |
 | What it keeps | Topics and conclusions | The teacher's focus points, judgment rules, demonstrations, and corrections |
 | How you use it | You read it | It sets a task, you try first, it reviews by the teacher's standards |
@@ -42,7 +42,7 @@ A summary keeps what the teacher said. Teacher-to-Skills keeps what the teacher 
 
 It **never** claims to clone a teacher's personality, consciousness, or complete experience. Anything the material does not support is marked as missing evidence, not filled in with "the teacher would probably say".
 
-## How the distilled mentor coaches you
+## How the distilled teacher coaches you
 
 - **Baseline first**: learns your goal, current level, and a real situation you care about, then starts with the concept you need most.
 - **Clear explanations**: intuition first, then a precise definition, a visual, an example, a counterexample, and a three-point recap. Visuals use terminal-safe ASCII, with SVG for more complex relationships.
@@ -52,7 +52,7 @@ It **never** claims to clone a teacher's personality, consciousness, or complete
 - **Steps back over time**: templates and hints fade as you improve, ending with unseen situations and no hints.
 - **Knows when you have graduated**: mastery means you can still do it after a delay, apply it in a new context, and recognize its limits.
 
-The goal is not permanent dependence on an AI mentor. It is to learn the teacher's method and, eventually, form your own.
+The goal is not permanent dependence on an AI teacher. It is to learn the teacher's method and, eventually, form your own.
 
 <img src="./docs/img/apprenticeship-lifecycle.svg" alt="The full path from starting a subject to independent use" width="100%">
 
@@ -70,13 +70,13 @@ Send the [installation guide](./docs/install.md) to your AI assistant (Claude Co
 
 Upload files or point to the folder, then say:
 
-> Use Teacher-to-Skills to distill this teacher's material into a mentor Skill that can help me genuinely learn. My goal is to apply the teacher's method in real work. Keep important claims traceable to their sources, and keep raw material and personal learning records private. First tell me what material you found and what is missing. If there is no risky decision for me to make, continue through distillation, validation, and enabling the new Skill, then tell me how to begin the first lesson.
+> Use Teacher-to-Skills to distill this teacher's material into a teacher Skill that can help me genuinely learn. My goal is to apply the teacher's method in real work. Keep important claims traceable to their sources, and keep raw material and personal learning records private. First tell me what material you found and what is missing. If there is no risky decision for me to make, continue through distillation, validation, and enabling the new Skill, then tell me how to begin the first lesson.
 
 It inventories the material, then handles transcription, recognition, source mapping, teacher-method extraction, practice design, and quality checks. Interrupted work can resume.
 
 The handoff should clearly state:
 
-- whether the mentor Skill has been generated and enabled;
+- whether the teacher Skill has been generated and enabled;
 - which videos, documents, lessons, and notes were processed;
 - which passages are weakly supported, unclear, or need your review;
 - whether it supports full coaching, guided learning, or source lookup only;
@@ -84,9 +84,9 @@ The handoff should clearly state:
 
 If any of this is unclear, ask it to complete the delivery check.
 
-### 3. Learn with your mentor
+### 3. Learn with your teacher
 
-> Start teaching me with the mentor Skill you just created. First ask about my goal, current level, weekly time, and one real application. After a short baseline check, teach one concept progressively. Then show both questions together, wait for my answers, and evaluate them separately.
+> Start teaching me with the teacher Skill you just created. First ask about my goal, current level, weekly time, and one real application. After a short baseline check, teach one concept progressively. Then show both questions together, wait for my answers, and evaluate them separately.
 
 On later visits, one line is enough:
 
@@ -98,7 +98,7 @@ On later visits, one line is enough:
 | Review | “Use my previous mistakes to schedule a review, but do not repeat the original question.” |
 | Test transfer | “Use a situation I have not seen before to check whether I can apply the method on my own.” |
 | Solve a real problem | “Let me explain my judgment and plan first, then use the teacher's method to correct the biggest gap.” |
-| Add new material | “Here is the teacher's new lesson. Update the mentor Skill and keep my learning progress.” |
+| Add new material | “Here is the teacher's new lesson. Update the teacher Skill and keep my learning progress.” |
 | Ask to graduate | “Give me no hints. Test me in a new situation and explain what evidence of mastery is still missing.” |
 
 ## What material can be distilled
@@ -112,7 +112,7 @@ On later visits, one line is enough:
 | Existing transcripts or course notes | Reuses completed work instead of processing it again |
 | Material from several teachers | Keeps each teacher's position, conditions, and disagreements instead of forcing one answer |
 
-Incomplete material is fine. It flags missing evidence and items that need human review. When the material supports explanation but not reliable practice, the Skill falls back to source lookup or guided learning instead of pretending to be a complete mentor.
+Incomplete material is fine. It flags missing evidence and items that need human review. When the material supports explanation but not reliable practice, the Skill falls back to source lookup or guided learning instead of pretending to be a complete teacher.
 
 ## How it works
 
@@ -121,7 +121,7 @@ Incomplete material is fine. It flags missing evidence and items that need human
 | Layer | What it does |
 | --- | --- |
 | Evidence | Keeps original passages, quotes, handouts, and key visuals so every claim can be traced |
-| Mentor | Extracts the teacher's focus points, judgment rules, demonstrations, corrections, and boundaries |
+| Teacher | Extracts the teacher's focus points, judgment rules, demonstrations, corrections, and boundaries |
 | Practice | Builds ordered exercises, rubrics, review, and transfer checks |
 | Personal | Keeps your attempts and real results, and with your approval turns them into your own method |
 

@@ -35,8 +35,8 @@
       <text x="32" y="22" fill="#286F68" font-size="13" font-weight="650" letter-spacing="1.5">TEACHER-TO-SKILLS 1.0</text>
     </g>
 
-    <text x="72" y="182" fill="#182A38" font-size="68" font-weight="720" letter-spacing="-2.8">把导师，蒸馏成 Skill。</text>
-    <text x="72" y="248" fill="#536879" font-size="27" font-weight="430">提炼老师的证据、判断与标准，变成一位会示范、会纠错、最终放手的 AI 导师。</text>
+    <text x="72" y="182" fill="#182A38" font-size="68" font-weight="720" letter-spacing="-2.8">把老师，蒸馏成 Skill。</text>
+    <text x="72" y="248" fill="#536879" font-size="27" font-weight="430">提炼老师的证据、判断与标准，变成一位会示范、会纠错、最终放手的 AI 老师。</text>
     <text x="72" y="292" fill="#718596" font-size="18">Distill your teacher · learn the method · work on your own</text>
 
     <g transform="translate(72 356)" filter="url(#shadow)">
