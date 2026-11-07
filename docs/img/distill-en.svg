@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc" lang="en">
+  <title id="title">Not a course summary. A distilled teacher.</title>
+  <desc id="desc">The judgment your teacher never wrote down, turned into a Skill you can check and practice</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8FAF8"/><stop offset="1" stop-color="#F4F2FA"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.1" r="0.6">
+      <stop offset="0" stop-color="#DDEFEA" stop-opacity="0.9"/><stop offset="1" stop-color="#DDEFEA" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-40%" width="140%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#1B2B3A" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M1 1L9 5 1 9" fill="none" stroke="#8A97A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="1440" height="760" rx="28" fill="url(#bg)"/>
+  <rect width="1440" height="760" rx="28" fill="url(#glow)"/>
+  <rect x="0.5" y="0.5" width="1439" height="759" rx="27.5" fill="none" stroke="#E6E3DC"/>
+  <g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC','Noto Sans SC',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+<text x="72.0" y="92.0" font-size="40" font-weight="750" fill="#17232E" text-anchor="start" letter-spacing="-0.5">Not a course summary. A distilled teacher.</text><text x="72.0" y="134.0" font-size="18" font-weight="400" fill="#5B6B78" text-anchor="start">The judgment your teacher never wrote down, turned into a Skill you can check and practice</text>
+<text x="72.0" y="202.0" font-size="14" font-weight="700" fill="#8A97A3" text-anchor="start" letter-spacing="1">Teacher&#x27;s material</text>
+<rect x="72.0" y="222.0" width="300.0" height="56.0" rx="14" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="90" y="238" width="24" height="24" rx="7" fill="#E8F4F1" stroke="#2F8F83"/>
+<text x="128.0" y="256.0" font-size="17" font-weight="600" fill="#17232E" text-anchor="start">Course videos</text>
+<path d="M372 250C410 250 420 393 459 393" fill="none" stroke="#F1D2B0" stroke-width="2"/>
+<rect x="72.0" y="292.0" width="300.0" height="56.0" rx="14" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="90" y="308" width="24" height="24" rx="7" fill="#ECF1FA" stroke="#4C6FB8"/>
+<text x="128.0" y="326.0" font-size="17" font-weight="600" fill="#17232E" text-anchor="start">Books &amp; handouts</text>
+<path d="M372 320C410 320 420 393 459 393" fill="none" stroke="#F1D2B0" stroke-width="2"/>
+<rect x="72.0" y="362.0" width="300.0" height="56.0" rx="14" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="90" y="378" width="24" height="24" rx="7" fill="#F2EDF9" stroke="#7B5BB5"/>
+<text x="128.0" y="396.0" font-size="17" font-weight="600" fill="#17232E" text-anchor="start">Recordings</text>
+<path d="M372 390C410 390 420 393 459 393" fill="none" stroke="#F1D2B0" stroke-width="2"/>
+<rect x="72.0" y="432.0" width="300.0" height="56.0" rx="14" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="90" y="448" width="24" height="24" rx="7" fill="#EEF5EA" stroke="#5E8C4A"/>
+<text x="128.0" y="466.0" font-size="17" font-weight="600" fill="#17232E" text-anchor="start">Articles &amp; notes</text>
+<path d="M372 460C410 460 420 393 459 393" fill="none" stroke="#F1D2B0" stroke-width="2"/>
+<rect x="72.0" y="502.0" width="300.0" height="56.0" rx="14" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="90" y="518" width="24" height="24" rx="7" fill="#FCF1E6" stroke="#C8732A"/>
+<text x="128.0" y="536.0" font-size="17" font-weight="600" fill="#17232E" text-anchor="start">Written feedback</text>
+<path d="M372 530C410 530 420 393 459 393" fill="none" stroke="#F1D2B0" stroke-width="2"/>
+<path d="M436 228H632L586 558H482Z" fill="#FCF1E6" stroke="#F1D2B0" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="534.0" y="280.0" font-size="24" font-weight="800" fill="#C8732A" text-anchor="middle">Distill</text>
+<path d="M470 312H598" stroke="#F1D2B0" stroke-dasharray="4 5"/>
+<text x="534.0" y="344.0" font-size="15" font-weight="600" fill="#17232E" text-anchor="middle">Transcribe</text>
+<path d="M482 382H586" stroke="#F1D2B0" stroke-dasharray="4 5"/>
+<text x="534.0" y="414.0" font-size="15" font-weight="600" fill="#17232E" text-anchor="middle">Cite sources</text>
+<path d="M494 452H574" stroke="#F1D2B0" stroke-dasharray="4 5"/>
+<text x="534.0" y="484.0" font-size="15" font-weight="600" fill="#17232E" text-anchor="middle">Extract method</text>
+<path d="M611.0 393.0L662.0 393.0" stroke="#C8732A" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="676.0" y="202.0" font-size="14" font-weight="700" fill="#8A97A3" text-anchor="start" letter-spacing="1">What gets distilled</text>
+<rect x="676.0" y="222.0" width="336.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="676" y="242" width="5" height="76" rx="2.5" fill="#2F8F83"/>
+<text x="702.0" y="262.0" font-size="19" font-weight="700" fill="#17232E" text-anchor="start">Sources</text>
+<text x="702.0" y="290.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">The passage, quote, page, or frame</text><text x="702.0" y="313.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">behind each claim</text>
+<rect x="1032.0" y="222.0" width="336.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="1032" y="242" width="5" height="76" rx="2.5" fill="#4C6FB8"/>
+<text x="1058.0" y="262.0" font-size="19" font-weight="700" fill="#17232E" text-anchor="start">Focus points</text>
+<text x="1058.0" y="290.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">What the teacher looks at first and</text><text x="1058.0" y="313.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">watches closely</text>
+<rect x="676.0" y="356.0" width="336.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="676" y="376" width="5" height="76" rx="2.5" fill="#4C6FB8"/>
+<text x="702.0" y="396.0" font-size="19" font-weight="700" fill="#17232E" text-anchor="start">Judgment rules</text>
+<text x="702.0" y="424.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">What a conclusion rests on, and how</text><text x="702.0" y="447.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">exceptions work</text>
+<rect x="1032.0" y="356.0" width="336.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="1032" y="376" width="5" height="76" rx="2.5" fill="#4C6FB8"/>
+<text x="1058.0" y="396.0" font-size="19" font-weight="700" fill="#17232E" text-anchor="start">Demonstrations</text>
+<text x="1058.0" y="424.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">The teacher&#x27;s full worked approach and</text><text x="1058.0" y="447.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">its key steps</text>
+<rect x="676.0" y="490.0" width="336.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="676" y="510" width="5" height="76" rx="2.5" fill="#7B5BB5"/>
+<text x="702.0" y="530.0" font-size="19" font-weight="700" fill="#17232E" text-anchor="start">Mistakes &amp; corrections</text>
+<text x="702.0" y="558.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">Where students slip, and how the teacher</text><text x="702.0" y="581.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">points it out</text>
+<rect x="1032.0" y="490.0" width="336.0" height="116.0" rx="16" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1" filter="url(#shadow)"/>
+<rect x="1032" y="510" width="5" height="76" rx="2.5" fill="#C8732A"/>
+<text x="1058.0" y="530.0" font-size="19" font-weight="700" fill="#17232E" text-anchor="start">Boundaries</text>
+<text x="1058.0" y="558.0" font-size="15" font-weight="400" fill="#5B6B78" text-anchor="start">When the method does not apply</text>
+<rect x="72.0" y="648.0" width="1296.0" height="64.0" rx="18" fill="#FFFFFF" stroke="#E3E7EA" stroke-width="1"/>
+<text x="104.0" y="687.0" font-size="18" font-weight="500" fill="#8A97A3" text-anchor="start">A summary keeps what the teacher said</text>
+<path d="M465.0 681.0L525.0 681.0" stroke="#C8732A" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="545.0" y="687.0" font-size="18" font-weight="750" fill="#2F8F83" text-anchor="start">Distilling keeps what the teacher would do</text>
+  </g>
+</svg>
